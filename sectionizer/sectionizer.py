@@ -1,0 +1,141 @@
+from spacy.tokens import Doc, Token, Span
+from spacy.matcher import Matcher, PhraseMatcher
+
+
+Doc.set_extension("sections", default=list(), force=True)
+
+Token.set_extension("section", default=None, force=True)
+Token.set_extension("section_name", default=None, force=True)
+Token.set_extension("section_header", default=None, force=True)
+
+# Set span attributes to the attribute of the first token
+# in case there is some overlap between a span and a new section header
+Span.set_extension("section", getter=lambda x: x[0]._.section, force=True)
+Span.set_extension("section_name", getter=lambda x: x[0]._.section_name, force=True)
+Span.set_extension("section_header", getter=lambda x: x[0]._.section_header, force=True)
+
+class Sectionizer:
+    name = "sectionizer"
+
+    def __init__(self, nlp):
+        self.nlp = nlp
+        self.matcher = Matcher(nlp.vocab)
+        self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
+
+        self.rules = []
+
+    def add(self, patterns):
+        """Add a list of patterns to the sectionizer. Each pattern should be a dictionary with
+       two keys:
+           'section': The normalized section name of the section, such as 'pmh'.
+           'pattern': The spaCy pattern matching a span of text.
+               Either a string for exact matching (case insensitive)
+               or a list of dicts.
+
+       Example:
+       >>> patterns = [ \
+           {"section_name": "past_medical_history", "pattern": "pmh"}\
+           {"section_name": "past_medical_history", "pattern": [{"LOWER": "past", "OP": "?"}, \
+               {"LOWER": "medical"}, \
+               {"LOWER": "history"}]\
+               },\
+           {"section_name": "assessment_and_plan", "pattern": "a/p:"}\
+           ]
+       >>> sectionizer.add(patterns)
+       """
+        for pattern_dict in patterns:
+            name = pattern_dict["section_name"]
+            pattern = pattern_dict["pattern"]
+            if isinstance(pattern, str):
+                self.phrase_matcher.add(name, None, self.nlp.make_doc(pattern))
+            else:
+                self.matcher.add(name, pattern)
+
+    def __call__(self, doc):
+        matches = self.matcher(doc)
+        matches += self.phrase_matcher(doc)
+        matches = prune_overlapping_matches(matches)
+        if len(matches) == 0:
+            return doc
+
+        first_match = matches[0]
+        section_spans = []
+        if first_match[1] != 0:
+            section_spans.append((None, None, doc[0:first_match[1]]))
+        for i, match in enumerate(matches):
+            (match_id, start, end) = match
+            section_header = doc[start:end]
+            name = self.nlp.vocab.strings[match_id]
+            if i == len(matches) - 1:
+                section_spans.append((name, section_header, doc[start:]))
+            else:
+                next_match = matches[i + 1]
+                _, next_start, _ = next_match
+                section_spans.append((name, section_header, doc[start:next_start]))
+        for name, header, section in section_spans:
+            doc._.sections.append((name, header, section))
+            for token in section:
+                token._.section = section
+                token._.section_name = name
+                token._.section_header = header
+        return doc
+
+def prune_overlapping_matches(matches, strategy="longest"):
+    if strategy != "longest":
+        raise NotImplementedError()
+
+    # Make a copy and sort
+    unpruned = sorted(matches, key=lambda x: (x[1], x[2]))
+    pruned = []
+    num_matches = len(matches)
+    if num_matches == 0:
+        return matches
+    curr_match = unpruned.pop(0)
+
+    while True:
+        if len(unpruned) == 0:
+            pruned.append(curr_match)
+            break
+        next_match = unpruned.pop(0)
+
+        # Check if they overlap
+        if overlaps(curr_match, next_match):
+            # Choose the larger span
+            longer_span = max(curr_match, next_match, key=lambda x: (x[2] - x[1]))
+            pruned.append(longer_span)
+            if len(unpruned) == 0:
+                break
+            curr_match = unpruned.pop(0)
+        else:
+            pruned.append(curr_match)
+            curr_match = next_match
+    # Recursive base point
+    if len(pruned) == num_matches:
+        return pruned
+    # Recursive function call
+    else:
+        return prune_overlapping_matches(pruned)
+
+def overlaps(a, b):
+    if _span_overlaps(a, b) or _span_overlaps(b, a):
+        return True
+    return False
+
+def _span_overlaps(a, b):
+    _, a_start, a_end = a
+    _, b_start, b_end = b
+    if a_start >= b_start and a_start < b_end:
+        return True
+    if a_end > b_start and a_end <= b_end:
+        return True
+    return False
+
+def matches_to_spans(doc, matches, set_label=True):
+    spans = []
+    for (rule_id, start, end) in matches:
+        if set_label:
+            label = doc.vocab.strings[rule_id]
+        else:
+            label = None
+        spans.append(Span(doc, start=start, end=end, label=label))
+    return spans
