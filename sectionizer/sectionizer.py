@@ -1,6 +1,10 @@
 from spacy.tokens import Doc, Token, Span
 from spacy.matcher import Matcher, PhraseMatcher
 
+# Filepath to default rules which are included in package
+from os import path
+from pathlib import Path
+
 from ._utils import *
 
 Doc.set_extension("sections", default=list(), force=True)
@@ -18,17 +22,28 @@ Span.set_extension("section", getter=lambda x: x[0]._.section, force=True)
 Span.set_extension("section_name", getter=lambda x: x[0]._.section_name, force=True)
 Span.set_extension("section_header", getter=lambda x: x[0]._.section_header, force=True)
 
+DEFAULT_RULES_FILEPATH = path.join(
+    Path(__file__).resolve().parents[1], "resources", "spacy_section_patterns.jsonl"
+)
+
 class Sectionizer:
     name = "sectionizer"
 
-    def __init__(self, nlp, patterns=None):
+    def __init__(self, nlp, patterns="default"):
         self.nlp = nlp
         self.matcher = Matcher(nlp.vocab)
         self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
 
         if patterns is not None:
+            if patterns == "default":
+                import os
+                if not os.path.exists(DEFAULT_RULES_FILEPATH):
+                    raise FileNotFoundError("The expected location of the default patterns file cannot be found. Please either "
+                                            "add patterns manually or add a jsonl file to the following location: ",
+                                            DEFAULT_RULES_FILEPATH)
+                self.add(self.load_patterns_from_jsonl(DEFAULT_RULES_FILEPATH))
             # If a list, add each of the patterns in the list
-            if isinstance(patterns, list):
+            elif isinstance(patterns, list):
                 self.add(patterns)
             elif isinstance(patterns, str):
                 import os
