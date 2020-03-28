@@ -81,6 +81,12 @@ Diabetes family_history
 Pneumonia past_medical_history
 Atrial fibrillation assessment_and_plan
 pneumonia assessment_and_plan
-
-
 ```
+
+There is also a visualizer which shows section headers, along with any extracted entities and 
+cycontext modifiers, in an NER-style visualization.
+```python
+from sectionizer.viz import visualize_ent
+visualize_ent(doc)
+``` 
+<p align="center"><img width="75%" src="img/viz_ent.png" /></p>
