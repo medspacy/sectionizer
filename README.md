@@ -83,10 +83,10 @@ Atrial fibrillation assessment_and_plan
 pneumonia assessment_and_plan
 ```
 
-There is also a visualizer which shows section headers, along with any extracted entities and 
-cycontext modifiers, in an NER-style visualization.
+Using cycontext, you can also use a visualizer which shows section headers, along with any extracted entities and 
+optionally cycontext modifiers, in an NER-style visualization.
 ```python
-from sectionizer.viz import visualize_ent
-visualize_ent(doc)
+from cycontext.viz import visualize_ent
+visualize_ent(doc, sections=True, context=False)
 ``` 
-<p align="center"><img width="75%" src="img/viz_ent.png" /></p>
+<p align="center"><img width="50%" height="50%" src="img/viz_ent.png" /></p>

@@ -392,3 +392,7 @@
 {"section_name": "other", "pattern": "medications held or discontinued upon admission:"}
 {"section_name": "other", "pattern": "changes/additions:"}
 {"section_name": "other", "pattern": "possible risks or complications include"}
+{"section_name": "imaging", "pattern": "MRI:"}
+{"section_name": "patient_instructions", "pattern": "Discharge Instructions:"}
+{"section_name": "patient_instructions", "pattern": "Followup Instructions:"}
+{"section_name": "signature", "pattern": "Signed electronically by:"}

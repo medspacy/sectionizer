@@ -1,8 +1,12 @@
 from spacy.tokens import Doc, Token, Span
 from spacy.matcher import Matcher, PhraseMatcher
 
+from ._utils import *
 
 Doc.set_extension("sections", default=list(), force=True)
+Doc.set_extension("section_titles", getter=get_section_titles, force=True)
+Doc.set_extension("section_headers", getter=get_section_headers, force=True)
+Doc.set_extension("section_spans", getter=get_section_spans, force=True)
 
 Token.set_extension("section", default=None, force=True)
 Token.set_extension("section_name", default=None, force=True)
@@ -17,12 +21,30 @@ Span.set_extension("section_header", getter=lambda x: x[0]._.section_header, for
 class Sectionizer:
     name = "sectionizer"
 
-    def __init__(self, nlp):
+    def __init__(self, nlp, patterns=None):
         self.nlp = nlp
         self.matcher = Matcher(nlp.vocab)
         self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
 
-        self.rules = []
+        if patterns is not None:
+            # If a list, add each of the patterns in the list
+            if isinstance(patterns, list):
+                self.add(patterns)
+            elif isinstance(patterns, str):
+                import os
+                assert os.path.exists(patterns)
+                self.add(self.load_patterns_from_jsonl(patterns))
+
+    @classmethod
+    def load_patterns_from_jsonl(cls, filepath):
+
+        import json
+        patterns = []
+        with open(filepath) as f:
+            for line in f:
+                patterns.append(json.loads(line))
+
+        return patterns
 
     def add(self, patterns):
         """Add a list of patterns to the sectionizer. Each pattern should be a dictionary with
@@ -49,13 +71,14 @@ class Sectionizer:
             if isinstance(pattern, str):
                 self.phrase_matcher.add(name, None, self.nlp.make_doc(pattern))
             else:
-                self.matcher.add(name, pattern)
+                self.matcher.add(name, [pattern])
 
     def __call__(self, doc):
         matches = self.matcher(doc)
         matches += self.phrase_matcher(doc)
         matches = prune_overlapping_matches(matches)
         if len(matches) == 0:
+            doc._.sections.append((None, None, doc[0:]))
             return doc
 
         first_match = matches[0]
@@ -139,3 +162,4 @@ def matches_to_spans(doc, matches, set_label=True):
             label = None
         spans.append(Span(doc, start=start, end=end, label=label))
     return spans
+
