@@ -80,7 +80,7 @@ Atrial fibrillation assessment_and_plan
 pneumonia assessment_and_plan
 ```
 
-Using cycontext, you can also use a visualizer which shows section headers, along with any extracted entities and 
+Using [cycontext](https://github.com/medspacy/cycontext), you can also use a visualizer which shows section headers, along with any extracted entities and 
 optionally cycontext modifiers, in an NER-style visualization.
 ```python
 from cycontext.viz import visualize_ent
