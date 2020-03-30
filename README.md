@@ -55,24 +55,21 @@ following extensions to spaCy objects:
 
 >>> for (section_name, section_header, section) in doc._.sections:
         print(section_name, section_header, section, sep="\n")
-        print("---"*5)
+
 family_history
 Family History:
 Family History:
 Diabetes
----------------
 
 past_medical_history
 Past Medical History:
 Past Medical History:
 Pneumonia
----------------
 
 assessment_and_plan
 Assessment and Plan:
 Assessment and Plan:
 Atrial fibrillation. There is no evidence of pneumonia.
----------------
 
 >>> for ent in doc.ents:
         print(ent, ent._.section_name)
