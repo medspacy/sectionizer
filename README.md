@@ -1,4 +1,4 @@
-# Sectionizer
+# Clinical Sectionizer
 This package offers a spaCy component for tagging clinical section titles in docs. The `sectionizer` takes a list of 
 patterns for section titles and searches for matches in a `doc`. When a section is found, it generates three outputs:
 1. `section_name`: The normalized name of a section, a `string`
@@ -28,7 +28,7 @@ following extensions to spaCy objects:
 >>> import spacy
 >>> nlp = spacy.load(...) # Load a model which will match clinical concepts
 
->>> from sectionizer import Sectionizer
+>>> from clinical_sectionizer import Sectionizer
 >>> sectionizer = nlp.add_pipe(Sectionizer(nlp))
 
 

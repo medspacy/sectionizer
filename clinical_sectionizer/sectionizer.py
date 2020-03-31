@@ -27,7 +27,7 @@ DEFAULT_RULES_FILEPATH = path.join(
 )
 
 class Sectionizer:
-    name = "sectionizer"
+    name = "clinical_sectionizer"
 
     def __init__(self, nlp, patterns="default"):
         self.nlp = nlp
@@ -62,7 +62,7 @@ class Sectionizer:
         return patterns
 
     def add(self, patterns):
-        """Add a list of patterns to the sectionizer. Each pattern should be a dictionary with
+        """Add a list of patterns to the clinical_sectionizer. Each pattern should be a dictionary with
        two keys:
            'section': The normalized section name of the section, such as 'pmh'.
            'pattern': The spaCy pattern matching a span of text.
@@ -78,7 +78,7 @@ class Sectionizer:
                },\
            {"section_name": "assessment_and_plan", "pattern": "a/p:"}\
            ]
-       >>> sectionizer.add(patterns)
+       >>> clinical_sectionizer.add(patterns)
        """
         for pattern_dict in patterns:
             name = pattern_dict["section_name"]

@@ -396,3 +396,5 @@
 {"section_name": "patient_instructions", "pattern": "Discharge Instructions:"}
 {"section_name": "patient_instructions", "pattern": "Followup Instructions:"}
 {"section_name": "signature", "pattern": "Signed electronically by:"}
+{"section_name": "education", "pattern": "Patient Education:"}
+{"section_name": "education", "pattern": "Education:"}
