@@ -1,0 +1,294 @@
+
+Admission Date:  [**2573-5-30**]              Discharge Date:   [**2573-7-1**]
+ 
+Date of Birth:  [**2498-8-19**]             Sex:   F
+ 
+Service: SURGERY
+ 
+Allergies: 
+Hydrochlorothiazide
+ 
+Attending:[**First Name3 (LF) 1893**] 
+Chief Complaint:
+Abdominal pain
+ 
+Major Surgical or Invasive Procedure:
+PICC line [**6-25**]
+ERCP w/ sphincterotomy [**5-31**]
+TEE [**6-22**]
+Tracheostomy [**6-24**]
+
+ 
+History of Present Illness:
+74y female with hypertension and a recent stroke affecting her 
+speech, who presents with 2 days of abdominal pain.  She states 
+it is constant, and radiates to her back.  It started after 
+eating a double cheese pizza and hard lemonade.  There is no 
+prior history of such an episode.  She had multiple bouts of 
+nausea and vomiting, with chills and decreased flatus.
+ 
+Past Medical History:
+1. Colon cancer dx'd in [**2554**], tx'd with hemicolectomy, XRT, 
+chemo. Last colonoscopy showed: Last CEA was in the 8 range 
+(down from 9) 
+2. Lymphedema from XRT, takes a diuretic 
+3. Cataracts 
+4. Hypertension 
+5. heart murmur - TTE in [**2567**] showed LA mod dilated, LV mildly 
+hypertrophied, aortic sclerosis, mild AI, mild MR. 
+6. Anxiety 
+7. CAD 
+8. Left corona radiata stroke with right facial droop and 
+dysathria [**1-/2573**]
+9. gallstones
+10. scoliosis
+11. rectus sheath hematoma
+12. history of sacral ulcer status post z-plasty
+13. ectopic pregnancy x2
+
+ 
+Social History:
+Married, former secretary, waitress. + tobacco x 40 years at 
+4ppd, quit 30 yrs ago. No alcohol or drug use.
+ 
+Family History:
+Mother with stroke at age 82. no early deaths. 
+2 daughters- healthy
+ 
+Physical Exam:
+VS: temp 101.5, HR 114, BP 213/98, RR 20, 97%RA
+Ill appearing, no distress
+Sclera mildly icteric, mucous membranes dry
+Lungs clear to auscultation bilaterally
+Abdomen distended, soft, diffusely tender, especially in the 
+epigastrum and right upper quandrant
+Rectal tone normal with no masses, guaiac negative
+Extremities warm, well perfused, 3+ edema
+ 
+Pertinent Results:
+[**2573-5-30**] 09:10PM BLOOD WBC-19.2*# RBC-4.81 Hgb-15.5 Hct-44.0 
+MCV-92 MCH-32.3* MCHC-35.2* RDW-13.3 Plt Ct-230
+[**2573-5-30**] 09:10PM BLOOD Neuts-87* Bands-10* Lymphs-3* Monos-0 
+Eos-0 Baso-0 Atyps-0 Metas-0 Myelos-0
+[**2573-5-30**] 09:10PM BLOOD PT-13.1 PTT-23.2 INR(PT)-1.1
+[**2573-5-30**] 09:10PM BLOOD Glucose-189* UreaN-29* Creat-1.2* Na-143 
+K-3.5 Cl-104 HCO3-24 AnGap-19
+[**2573-5-30**] 09:10PM BLOOD ALT-345* AST-388* AlkPhos-246* 
+Amylase-1235* TotBili-8.4*
+[**2573-5-30**] 09:10PM BLOOD Lipase-2443*
+[**2573-5-30**] 09:10PM BLOOD Albumin-4.2 Calcium-9.3 Mg-1.2*
+
+[**2573-7-1**] 03:01AM BLOOD WBC-7.5 RBC-2.95* Hgb-8.8* Hct-27.7* 
+MCV-94 MCH-29.9 MCHC-31.8 RDW-17.1* Plt Ct-213
+[**2573-7-1**] 03:01AM BLOOD Plt Ct-213
+[**2573-7-1**] 03:01AM BLOOD Glucose-100 UreaN-25* Creat-1.2* Na-141 
+K-3.5 Cl-102 HCO3-31* AnGap-12
+[**2573-6-29**] 12:45AM BLOOD ALT-22 AST-14 AlkPhos-159* Amylase-37 
+TotBili-0.7
+[**2573-6-29**] 12:45AM BLOOD Lipase-37
+[**2573-7-1**] 03:01AM BLOOD Calcium-8.4 Phos-3.0 Mg-1.8
+[**2573-7-1**] 05:25AM BLOOD Vanco-17.8*
+
+Ultrasound [**5-30**]: IMPRESSION: 1. Dilated common bile duct with 
+mild intrahepatic biliary ductal dilatation and dilataion of the 
+pancreatic duct. 2. Edematous gallbladder wall.
+
+ERCP [**5-31**]: There was bulging of the major pailla suggestive of an 
+impacted stone. A stone causing partial obstruction was seen in 
+the distal CBD. 
+There was dilation of the CBD above the stone however accurate 
+radiographic evaluation could not be obtained due to the use of 
+the C-arm in the ICU. A sphincterotomy was performed in the 12 
+o'clock position using a sphincterotome over an existing 
+guidewire. A 15mm balloon was used to sweep the duct multiple 
+times wich successfully extracted stones, sludge and a large 
+amount of purulent material. 
+
+ 
+Brief Hospital Course:
+Ms. [**Known patient lastname 2004**] was admitted on [**2573-5-30**]. Ultrasound at the time of 
+admission demonstrated pancreatic duct dilitation and an 
+edematous gallbladder. She was admitted to the ICU. [**5-31**] she 
+underwent ERCP w/ sphincterotomy, an impacted stone was removed. 
+She has had a prolonged ICU course. Review of hospital course by 
+system includes.
+Neuro: Neurology was consutled on [**6-11**] for mental status 
+changes. The team believed the patient's MS [**First Name (Titles) 1935**] [**Last Name (Titles) 2005**] from 
+her overall metabolic and infectious  conditions. A head CT was 
+performed which was negative. A lumbar puncture was also done 
+which too was negative. 
+
+Cardiovascular: The cardiology team was consulted on [**6-1**] and a 
+TTE was obtained showing decreased biventricular systolic 
+dysfunction representing a diffuse process. On [**6-14**] a repeat TTE 
+followed by a TEE was done to rule out endocarditis; no 
+vegatation or abscess was seen. A TEE was again performed on 
+[**6-22**] there was no significant change from the prior study. The 
+patient was treated with amiodarone to control her atrial 
+fibrillation. 
+
+Pulmonary: Patient was intubated on admission and transferred to 
+the ICU. Patient was initially extubated on hospital day six. 
+The patient was re-intubated on [**6-12**] for hypercarbic respiratory 
+failure and airway protection. The patient was extubated again 
+on [**6-18**] and re-intubated on [**6-19**] for respiratory decompensation. 
+The patient ultimately underwent a tracheostomy on [**6-24**]. The 
+patient tolerated a trach mask on [**6-25**]. Bronchoscopy on [**6-26**] 
+with suctioning of bronchial plugs. CT chest on [**6-27**] showed 
+collapse of the left lung with left sided pleural effusion. Left 
+sided thoracentesis was done on [**6-27**] to remove fluid with hope 
+of re-expanding left lung.
+
+GI: Patient was admitted with a diagnosis of gallstone 
+pancreatitis, she underwent ERCP w/ sphincterotomy on [**5-31**]. Her 
+tube feeds were started due anticipation of a  prolonged period 
+without orally based enteral nutrition. [**6-9**] patient had a CT 
+scan of the abdomen,it showed no gallstones or abscess. A 
+post-pyloric dobhoff was placed on [**6-14**]. The patient's caloric 
+intake was maintained by a combination of TPN and tube feeds. 
+Each nutritional replacment was employed at different times 
+independently of the other based on the patient's tolerance for 
+tube feeds or TPN.
+
+FEN: Patient was dehydrated, with hypovolemia and treated with 
+aggressive fluid hydration upon admission to the hospital. Tube 
+feeds were held on [**6-30**] due to high residuals. Currently the 
+patient is not on TPN, while nutrition more recently has been 
+maintained with tube feeds.
+
+Renal: Foley in place to monitor urine output.
+
+Heme: Blood loss and anemia in the unit requiring multiple 
+transfusions. Currently, hematocrit is stable.
+
+ID: Consult was obtained on [**6-12**] the ID team continued to follow 
+the patient throughout her entire hospital stay. The patient had 
+multiple episodes of fever and cultures which were positive for 
+the following organisms. [**6-26**] Blood: MRSA // [**6-23**] Sputum: MRSA, 
+Klebsiella // [**6-22**] Sputum: MRSA, Klebsiella // 23: Bld/Tip- pend 
+// [**6-19**] Blood: [**Female First Name (un) **] // [**6-19**]: urine - neg // [**6-18**] Blood: 
+[**Female First Name (un) **] // [**6-16**] Blood: [**Female First Name (un) **] // [**6-14**] Blood: [**Female First Name (un) **] // [**6-13**] 
+Blood: [**Female First Name (un) **] // [**6-12**] Bladder swab: Enterococcus, [**Female First Name (un) **], 
+Staph coag Pos, GNR, Staph Coag Neg // [**6-12**] Blood: [**Female First Name (un) **] // 
+[**6-11**] Cath tip: [**Female First Name (un) **] // [**6-11**] Blood: [**Female First Name (un) **] // [**6-11**] Urine: 
+Enterococcus, Yeast // [**6-9**] Cath tip: [**Female First Name (un) **] // Urine [**5-30**] 
+KLEBSIELLA PNEUMONIAE, Viridans // Blood 5/01 KLEBSIELLA 
+PNEUMONIAE, Corynybacterium 
+Additionally the patient had multiple line changes secondary to 
+spiking temperatures and positive cultures.The patient was 
+treated with multiple antibiotics during her hospital course and 
+at the time of discharge he was being treated with Ambisome, 
+Caspofungin and Vancomycin. Please continue Ambisome and 
+caspofungin until [**7-6**], Vancomycin should be continued until 
+[**7-12**].
+
+Endo: The patient has been maintained on an insulin sliding 
+scale through the duration of her hospital course.
+
+Consults: The team orderd a pysch consult on the patient on [**6-7**] 
+becuse the patient appeared to be confused. An opthomology 
+consult was ordered to rule out fungally related eye infection. 
+The patient was seen and evaluated by optho; they deemed that 
+there was no eye infection.
+
+Hospital Procedures while in the SICU
+PICC line [**6-25**]
+Mulitple bronchoscopies
+Left thoracocentesis [**6-27**]
+Transesophageal echo [**6-22**]: normal
+ERCP with sphincterotomy [**5-31**]
+Tracheostomy [**6-24**]
+
+ 
+Medications on Admission:
+ASA 325mg daily
+buspirone 5mg TID
+colace 100mg BID
+lasix 20mg daily
+lipitor 10mg daily
+lisinopril 20mg daily
+neurontin 100mg BID
+omeprazole 20mg daily
+roxicet prn
+zinc 220mg daily
+vit C
+ 
+Discharge Medications:
+1. Miconazole Nitrate 2 % Powder Sig: One (1) Appl Topical  BID 
+(2 times a day) as needed.  
+2. Heparin Sodium (Porcine) 5,000 unit/mL Solution Sig: One (1)  
+Injection TID (3 times a day).  
+3. Acetaminophen 160 mg/5 mL Elixir Sig: One (1)  PO Q4-6H 
+(every 4 to 6 hours) as needed.  
+4. Terbinafine HCl 1 % Cream Sig: One (1) Appl Topical  BID (2 
+times a day).  
+5. Insulin Regular Human 100 unit/mL Solution Sig: One (1)  
+Injection ASDIR (AS DIRECTED).  
+6. Albuterol-Ipratropium 103-18 mcg/Actuation Aerosol Sig: [**1-31**] 
+Puffs Inhalation Q6H (every 6 hours) as needed.  
+7. Lansoprazole 30 mg Capsule, Delayed Release(E.C.) Sig: One 
+(1) Capsule, Delayed Release(E.C.) PO DAILY (Daily).  
+8. Metoprolol Tartrate 50 mg Tablet Sig: 1.5 Tablets PO TID (3 
+times a day).  
+9. Sertraline HCl 50 mg Tablet Sig: One (1) Tablet PO DAILY 
+(Daily).  
+10. Amiodarone HCl 200 mg Tablet Sig: Two (2) Tablet PO BID (2 
+times a day).  
+11. Hydralazine HCl 10 mg IV Q6 PRN 
+12. Fentanyl Citrate 25-50 mcg IV Q2H:PRN 
+13. Caspofungin 50 mg IV Q24H 
+14. Ambisome 300 mg IV Q24H 
+15. Furosemide 40 mg IV BID 
+16. Vancomycin HCl 1000 mg IV Q24H 
+vanco level 17 
+17. Dolasetron Mesylate 12.5 mg IV Q4H:PRN 
+
+ 
+Discharge Disposition:
+Extended Care
+ 
+Facility:
+[**Hospital3 1446**] & Rehab Center - [**Hospital1 370**]
+ 
+Discharge Diagnosis:
+Atrial Fibrillation
+Pancreatitis
+HTN
+hyperlipidemia
+h/o aspiration respiratory distress
+bacteremia ([**Female First Name (un) 929**])
+UTI (klebsiella)
+
+ 
+Discharge Condition:
+Good
+ 
+Discharge Instructions:
+Patient may shower. Please call your surgeon or return to the 
+emergency room if [**Doctor First Name **] experience fever >101.5, nausea, vomiting, 
+abdominal pain, shortness of breath, abdominal pain or any 
+significant  change in your medical condition. Ambisome and 
+caspofungin should be continued til [**7-6**] while vanco should be 
+continued til [**7-12**].
+ 
+Followup Instructions:
+Please follow up with Dr. [**Last Name (STitle) **] in 2 weeks. Upon discharge 
+please call Dr.[**Initials (NamePattern4) 1895**] [**Last Name (NamePattern4) 2006**] in order to schedule your 
+follow up appointment.([**Telephone/Fax (1) 2007**]
+ 
+Provider: [**Name10 (NameIs) 296**] [**Last Name (NamePattern4) 340**], M.D. [**MD Number 60**]: [**Hospital6 64**] 
+[**Hospital3 2008**] CENTER Phone:[**Telephone/Fax (1) 341**] Date/Time:[**2573-11-24**] 9:15
+ 
+Provider: [**First Name11 (Name Pattern1) **] [**Last Name (NamePattern1) 2009**], MD [**MD Number 60**]: [**Hospital6 64**] 
+HEMATOLOGY/ONCOLOGY Phone:[**Telephone/Fax (1) 936**] Date/Time:[**2574-5-11**] 10:00
+ 
+
+ 
+
+ 
+                             [**First Name11 (Name Pattern1) **] [**Last Name (NamePattern4) **] MD [**MD Number 1896**]
+ 
+Completed by: [**First Name11 (Name Pattern1) 2010**] [**Last Name (NamePattern1) 2011**] MD [**MD Number 2012**] [**2573-7-1**] @ 1404
+Signed electronically by: DR. [**First Name8 (NamePattern2) **] [**Last Name (NamePattern1) **]
+ on: FRI [**2573-7-2**] 8:03 AM
+(End of Report)
