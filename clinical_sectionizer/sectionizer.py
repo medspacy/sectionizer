@@ -26,13 +26,24 @@ DEFAULT_RULES_FILEPATH = path.join(
     Path(__file__).resolve().parents[1], "resources", "spacy_section_patterns.jsonl"
 )
 
-class Sectionizer:
-    name = "clinical_sectionizer"
+DEFAULT_ATTRS = {
+    "past_medical_history": {"is_historical": True},
+    "sexual_and_social_history": {"is_historical": True},
+    "family_history": {"is_family": True},
+    "patient_instructions": {"is_hypothetical": True},
+    "education": {"is_hypothetical": True},
+    "allergy": {"is_hypothetical": True}
+}
 
-    def __init__(self, nlp, patterns="default"):
+class Sectionizer:
+    name = "sectionizer"
+
+    def __init__(self, nlp, patterns="default", add_attrs=False):
         self.nlp = nlp
+        self.add_attrs = add_attrs
         self.matcher = Matcher(nlp.vocab)
         self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
+        self.assertion_attributes_mapping = None
         self._patterns = []
         self._section_titles = set()
 
@@ -52,6 +63,31 @@ class Sectionizer:
                 assert os.path.exists(patterns)
                 self.add(self.load_patterns_from_jsonl(patterns))
 
+        if add_attrs is False:
+            self.add_attrs = False
+        elif add_attrs is True:
+            self.assertion_attributes_mapping = DEFAULT_ATTRS
+            self.register_default_attributes()
+        elif isinstance(add_attrs, dict):
+            # Check that each of the attributes being added has been set
+            for modifier in add_attrs.keys():
+                attr_dict = add_attrs[modifier]
+                for attr_name, attr_value in attr_dict.items():
+                    if not Span.has_extension(attr_name):
+                        raise ValueError(
+                            "Custom extension {0} has not been set. Call Span.set_extension."
+                        )
+
+            self.add_attrs = True
+            self.assertion_attributes_mapping = add_attrs
+
+        else:
+            raise ValueError(
+                "add_attrs must be either True (default), False, or a dictionary, not {0}".format(
+                    add_attrs
+                )
+            )
+
     @property
     def patterns(self):
         return self._patterns
@@ -70,6 +106,20 @@ class Sectionizer:
                 patterns.append(json.loads(line))
 
         return patterns
+
+    def register_default_attributes(self):
+        """Register the default values for the Span attributes defined in DEFAULT_ATTRS."""
+        for attr_name in [
+            "is_negated",
+            "is_uncertain",
+            "is_historical",
+            "is_hypothetical",
+            "is_family",
+        ]:
+            try:
+                Span.set_extension(attr_name, default=False)
+            except ValueError:  # Extension already set
+                pass
 
     def add(self, patterns):
         """Add a list of patterns to the clinical_sectionizer. Each pattern should be a dictionary with
@@ -100,6 +150,20 @@ class Sectionizer:
             self._patterns.append(pattern_dict)
             self._section_titles.add(name)
 
+    def set_assertion_attributes(self, ents):
+        """Add Span-level attributes to entities based on which section they occur in.
+
+        Args:
+            edges: the edges to modify
+
+        """
+        for ent in ents:
+            if ent._.section_title in self.assertion_attributes_mapping:
+                attr_dict = self.assertion_attributes_mapping[ent._.section_title]
+                for (attr_name, attr_value) in attr_dict.items():
+                    setattr(ent._, attr_name, attr_value)
+
+
     def __call__(self, doc):
         matches = self.matcher(doc)
         matches += self.phrase_matcher(doc)
@@ -128,6 +192,11 @@ class Sectionizer:
                 token._.section_span = section
                 token._.section_title = name
                 token._.section_header = header
+
+        # If it is specified to add assertion attributes,
+        # iterate through the entities in doc and add them
+        if self.add_attrs is True:
+            self.set_assertion_attributes(doc.ents)
         return doc
 
 def prune_overlapping_matches(matches, strategy="longest"):

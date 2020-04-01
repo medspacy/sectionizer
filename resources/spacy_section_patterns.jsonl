@@ -103,7 +103,6 @@
 {"section_title": "observation_and_plan", "pattern": [{"LOWER": "assessment"}, {"OP": "?"}, {"LOWER": "plan"}]}
 {"section_title": "observation_and_plan", "pattern": "CLINICAL IMPRESSION:"}
 {"section_title": "observation_and_plan", "pattern": "Imp:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSION AND RECOMMENDATION:"}
 {"section_title": "observation_and_plan", "pattern": "IMPRESSION AND RECOMMENDATIONS:"}
 {"section_title": "observation_and_plan", "pattern": "IMPRESSION RECOMMENDATION:"}
 {"section_title": "observation_and_plan", "pattern": "IMPRESSION SECTION:"}
@@ -395,6 +394,7 @@
 {"section_title": "imaging", "pattern": "MRI:"}
 {"section_title": "patient_instructions", "pattern": "Discharge Instructions:"}
 {"section_title": "patient_instructions", "pattern": "Followup Instructions:"}
+{"section_title": "patient_instructions", "pattern": "Instructions:"}
 {"section_title": "signature", "pattern": "Signed electronically by:"}
 {"section_title": "education", "pattern": "Patient Education:"}
 {"section_title": "education", "pattern": "Education:"}
