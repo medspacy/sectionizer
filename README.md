@@ -25,9 +25,11 @@ described above, but each as texts rather than spaCy objects: `(section_title, s
 
 # Installation
 You can install `clinical_sectionizer` via pip:
+
 `pip install clinical-sectionizer`
 
 Or by cloning this repository and running:
+
 `python setup.py install`
 
 # Example
