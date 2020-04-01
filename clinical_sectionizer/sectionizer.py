@@ -12,14 +12,14 @@ Doc.set_extension("section_titles", getter=get_section_titles, force=True)
 Doc.set_extension("section_headers", getter=get_section_headers, force=True)
 Doc.set_extension("section_spans", getter=get_section_spans, force=True)
 
-Token.set_extension("section", default=None, force=True)
-Token.set_extension("section_name", default=None, force=True)
+Token.set_extension("section_span", default=None, force=True)
+Token.set_extension("section_title", default=None, force=True)
 Token.set_extension("section_header", default=None, force=True)
 
 # Set span attributes to the attribute of the first token
 # in case there is some overlap between a span and a new section header
-Span.set_extension("section", getter=lambda x: x[0]._.section, force=True)
-Span.set_extension("section_name", getter=lambda x: x[0]._.section_name, force=True)
+Span.set_extension("section_span", getter=lambda x: x[0]._.section_span, force=True)
+Span.set_extension("section_title", getter=lambda x: x[0]._.section_title, force=True)
 Span.set_extension("section_header", getter=lambda x: x[0]._.section_header, force=True)
 
 DEFAULT_RULES_FILEPATH = path.join(
@@ -33,6 +33,8 @@ class Sectionizer:
         self.nlp = nlp
         self.matcher = Matcher(nlp.vocab)
         self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
+        self._patterns = []
+        self._section_titles = set()
 
         if patterns is not None:
             if patterns == "default":
@@ -50,8 +52,16 @@ class Sectionizer:
                 assert os.path.exists(patterns)
                 self.add(self.load_patterns_from_jsonl(patterns))
 
+    @property
+    def patterns(self):
+        return self._patterns
+
+    @property
+    def section_titles(self):
+        return self._section_titles
+
     @classmethod
-    def load_patterns_from_jsonl(cls, filepath):
+    def load_patterns_from_jsonl(self, filepath):
 
         import json
         patterns = []
@@ -71,22 +81,24 @@ class Sectionizer:
 
        Example:
        >>> patterns = [ \
-           {"section_name": "past_medical_history", "pattern": "pmh"}\
-           {"section_name": "past_medical_history", "pattern": [{"LOWER": "past", "OP": "?"}, \
+           {"section_title": "past_medical_history", "pattern": "pmh"}\
+           {"section_title": "past_medical_history", "pattern": [{"LOWER": "past", "OP": "?"}, \
                {"LOWER": "medical"}, \
                {"LOWER": "history"}]\
                },\
-           {"section_name": "assessment_and_plan", "pattern": "a/p:"}\
+           {"section_title": "assessment_and_plan", "pattern": "a/p:"}\
            ]
        >>> clinical_sectionizer.add(patterns)
        """
         for pattern_dict in patterns:
-            name = pattern_dict["section_name"]
+            name = pattern_dict["section_title"]
             pattern = pattern_dict["pattern"]
             if isinstance(pattern, str):
                 self.phrase_matcher.add(name, None, self.nlp.make_doc(pattern))
             else:
                 self.matcher.add(name, [pattern])
+            self._patterns.append(pattern_dict)
+            self._section_titles.add(name)
 
     def __call__(self, doc):
         matches = self.matcher(doc)
@@ -113,8 +125,8 @@ class Sectionizer:
         for name, header, section in section_spans:
             doc._.sections.append((name, header, section))
             for token in section:
-                token._.section = section
-                token._.section_name = name
+                token._.section_span = section
+                token._.section_title = name
                 token._.section_header = header
         return doc
 

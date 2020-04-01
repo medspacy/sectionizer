@@ -1,13 +1,13 @@
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "past", "OP": "?"}, {"LOWER": "medical"}, {"LOWER": {"IN": ["history", "hx"]}}]}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": {"REGEX": "mhx?"}}]}
+{"section_title": "past_medical_history", "pattern": "(past )?medical (history|hx)"}
+{"section_title": "past_medical_history", "pattern": "mhx?"}
 {"section_title": "past_medical_history", "pattern": "mh:"}
 {"section_title": "past_medical_history", "pattern": "pmh:"}
 {"section_title": "past_medical_history", "pattern": "pohx:"}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "past"}, {"LOWER": "history"}, {"TEXT": ":"}]}
+{"section_title": "past_medical_history", "pattern": "past history:"}
 {"section_title": "past_medical_history", "pattern": "history:"}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": {"REGEX": "p[hm]+"}}, {"LOWER": "computerized"}, {"LOWER": "problem"}, {"LOWER": "list"}, {"TEXT": ":"}]}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "significant"}, {"LOWER": "medical"}, {"LOWER": "hx"}, {"TEXT": ":"}]}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "past"}, {"LOWER": "medical"}]}
+{"section_title": "past_medical_history", "pattern": "p[hm]+ computerized problem list:"}
+{"section_title": "past_medical_history", "pattern": "significant medical hx:"}
+{"section_title": "past_medical_history", "pattern": "past medical"}
 {"section_title": "past_medical_history", "pattern": "past medical history/problem list:"}
 {"section_title": "past_medical_history", "pattern": "past surgical history:"}
 {"section_title": "past_medical_history", "pattern": "patient history:"}
@@ -92,7 +92,7 @@
 {"section_title": "sexual_and_social_history", "pattern": "sexual history:"}
 {"section_title": "sexual_and_social_history", "pattern": "LGBTQ SCREENING NWI:"}
 {"section_title": "hiv_screening", "pattern": "HIV:"}
-{"section_title": "hiv_screening", "pattern": "HIV Screening:"}
+{"section_title": "hiv_screening", "pattern": "hiv_screening:"}
 {"section_title": "hiv_screening", "pattern": "HIV Risk:"}
 {"section_title": "observation_and_plan", "pattern": "ADDITIONAL ASSESSMENT:"}
 {"section_title": "observation_and_plan", "pattern": "MEDICAL DECISION MAKING/PLAN:"}
@@ -100,7 +100,6 @@
 {"section_title": "observation_and_plan", "pattern": "ASSESMENT:"}
 {"section_title": "observation_and_plan", "pattern": "ASSESS:"}
 {"section_title": "observation_and_plan", "pattern": "ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": [{"LOWER": "assessment"}, {"OP": "?"}, {"LOWER": "plan"}]}
 {"section_title": "observation_and_plan", "pattern": "CLINICAL IMPRESSION:"}
 {"section_title": "observation_and_plan", "pattern": "Imp:"}
 {"section_title": "observation_and_plan", "pattern": "IMPRESSION AND RECOMMENDATION:"}
@@ -146,7 +145,7 @@
 {"section_title": "observation_and_plan", "pattern": "impression and recommendations:"}
 {"section_title": "observation_and_plan", "pattern": "impression plan:"}
 {"section_title": "observation_and_plan", "pattern": "impression recommendation:"}
-{"section_title": "observation_and_plan", "pattern": [{"LOWER": "impression"}, {"LOWER": {"IN": [":", "-", " "]}}]}
+{"section_title": "observation_and_plan", "pattern": "impression[:\\- ]"}
 {"section_title": "observation_and_plan", "pattern": "impresion:"}
 {"section_title": "observation_and_plan", "pattern": "impression/plan:"}
 {"section_title": "observation_and_plan", "pattern": "impression/recommendations:"}
@@ -333,14 +332,14 @@
 {"section_title": "allergy", "pattern": "Allergy/Other Non-VA or VA Meds:"}
 {"section_title": "allergy", "pattern": "ALLERGY ASSESSMENT:"}
 {"section_title": "chief_complaint", "pattern": "chief_complaint:"}
-{"section_title": "Physical Exam", "pattern": "Physical Exam:"}
-{"section_title": "Physical Exam", "pattern": "Review of systems:"}
-{"section_title": "Physical Exam", "pattern": "PHYSICAL EXAMINATION"}
-{"section_title": "Physical Exam", "pattern": "PE:"}
-{"section_title": "Physical Exam", "pattern": "exam:"}
-{"section_title": "ED_Course", "pattern": "ED COURSE:"}
-{"section_title": "ED_Course", "pattern": "Er COURSE:"}
-{"section_title": "ED_Course", "pattern": "Emergency Department Course"}
+{"section_title": "physical_exam", "pattern": "Physical Exam:"}
+{"section_title": "physical_exam", "pattern": "Review of systems:"}
+{"section_title": "physical_exam", "pattern": "PHYSICAL EXAMINATION"}
+{"section_title": "physical_exam", "pattern": "PE:"}
+{"section_title": "physical_exam", "pattern": "exam:"}
+{"section_title": "ed_course", "pattern": "ED COURSE:"}
+{"section_title": "ed_course", "pattern": "Er COURSE:"}
+{"section_title": "ed_course", "pattern": "Emergency Department Course"}
 {"section_title": "labs_and_studies", "pattern": "findings :"}
 {"section_title": "labs_and_studies", "pattern": "LABORATORY DATA:"}
 {"section_title": "labs_and_studies", "pattern": "operation and findings:"}
