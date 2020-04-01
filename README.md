@@ -1,11 +1,17 @@
 # Clinical Sectionizer
-This package offers a spaCy component for tagging clinical section titles in docs. The `sectionizer` takes a list of 
+This package offers a component for tagging clinical section titles in docs. There are two different flavors of the sectionizer:
+- `Sectionizer`: A spaCy component which is run on a `Doc` object and adds attributes to spaCy objects. This can be added
+to an NLP pipeline and be executed as part of `nlp(text)`
+- `TextSectionizer`: A stand-alone object, independent of spaCy which takes a text and returns a list of tuples, where
+each tuple corresponds to a section in the text.
+
+The `sectionizer` takes a list of 
 patterns for section titles and searches for matches in a `doc`. When a section is found, it generates three outputs:
 1. `section_title`: The normalized name of a section, a `string`
 2. `section_header`: The span of the doc containing the header, a `Span`
 3. `section`: The entire span of the doc containing the section, a `Span`
 
-Calling `sectionizer(doc)` adds the 
+When using the spaCy `Sectionizer`, calling `sectionizer(doc)` adds the 
 following extensions to spaCy objects:
 
 - `Doc.sections`: A list of 3-tuples of (`name`, `header`, `section`)
@@ -14,7 +20,12 @@ following extensions to spaCy objects:
 - `Token.section_title`: The name of the section header defined by a pattern
 - `Span` attributes corresponding `section`, `section_header`, and `section_title` to the first token in a span
 
+When using `TextSectionizer`, calling `sectionizer(text)` returns a list of 3-tuples which correspond to the outputs 
+described above, but each as texts rather than spaCy objects: `(section_title, section_header, section_text)`
+
 # Example
+See `notebooks/`for more detailed examples.
+
 ```python
 >>> text = """Family History:
     Diabetes
