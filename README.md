@@ -23,6 +23,13 @@ following extensions to spaCy objects:
 When using `TextSectionizer`, calling `sectionizer(text)` returns a list of 3-tuples which correspond to the outputs 
 described above, but each as texts rather than spaCy objects: `(section_title, section_header, section_text)`
 
+# Installation
+You can install `clinical_sectionizer` via pip:
+`pip install clinical-sectionizer`
+
+Or by cloning this repository and running:
+`python setup.py install`
+
 # Example
 See `notebooks/`for more detailed examples.
 
