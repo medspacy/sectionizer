@@ -64,26 +64,24 @@ See `notebooks/`for more detailed examples.
 (Diabetes, Pneumonia, Atrial fibrillation, pneumonia)
 
 
->>> for (section_title, section_header, section_span) in doc._.sections:
-        print(section_title, section_header, section_span, sep="\n")
-        print("---"*5)
+
+>>> for (section_name, section_header, section) in doc._.sections:
+        print(section_name, section_header, section, sep="\n")
+
 family_history
 Family History:
 Family History:
 Diabetes
----------------
 
 past_medical_history
 Past Medical History:
 Past Medical History:
 Pneumonia
----------------
 
 assessment_and_plan
 Assessment and Plan:
 Assessment and Plan:
 Atrial fibrillation. There is no evidence of pneumonia.
----------------
 
 >>> for ent in doc.ents:
         print(ent, ent._.section_title)
@@ -94,7 +92,7 @@ Atrial fibrillation assessment_and_plan
 pneumonia assessment_and_plan
 ```
 
-Using cycontext, you can also use a visualizer which shows section headers, along with any extracted entities and 
+Using [cycontext](https://github.com/medspacy/cycontext), you can also use a visualizer which shows section headers, along with any extracted entities and 
 optionally cycontext modifiers, in an NER-style visualization.
 ```python
 from cycontext.viz import visualize_ent
