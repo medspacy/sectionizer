@@ -9,16 +9,16 @@ The `sectionizer` takes a list of
 patterns for section titles and searches for matches in a `doc`. When a section is found, it generates three outputs:
 1. `section_title`: The normalized name of a section, a `string`
 2. `section_header`: The span of the doc containing the header, a `Span`
-3. `section`: The entire span of the doc containing the section, a `Span`
+3. `section_span`: The entire span of the doc containing the section, a `Span`
 
 When using the spaCy `Sectionizer`, calling `sectionizer(doc)` adds the 
 following extensions to spaCy objects:
 
 - `Doc.sections`: A list of 3-tuples of (`name`, `header`, `section`)
-- `Token.section`: The `span` of the entire section which the token occurs in
+- `Token.section_span`: The `span` of the entire section which the token occurs in
 - `Token.section_header`: The `span` of the section header of the section a token occurs in
 - `Token.section_title`: The name of the section header defined by a pattern
-- `Span` attributes corresponding `section`, `section_header`, and `section_title` to the first token in a span
+- `Span` attributes corresponding `section_span`, `section_header`, and `section_title` to the first token in a span
 
 When using `TextSectionizer`, calling `sectionizer(text)` returns a list of 3-tuples which correspond to the outputs 
 described above, but each as texts rather than spaCy objects: `(section_title, section_header, section_text)`
