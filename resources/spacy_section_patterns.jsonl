@@ -1,5 +1,5 @@
 {"section_title": "past_medical_history", "pattern": [{"LOWER": "past", "OP": "?"}, {"LOWER": "medical"}, {"LOWER": {"IN": ["history", "hx"]}}]}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": {"REGEX": "mhx?"}}]}
+{"section_title": "past_medical_history", "pattern": "mhx:"}
 {"section_title": "past_medical_history", "pattern": "mh:"}
 {"section_title": "past_medical_history", "pattern": "pmh:"}
 {"section_title": "past_medical_history", "pattern": "pohx:"}
@@ -81,6 +81,7 @@
 {"section_title": "problem_list", "pattern": "chronic stable problems:"}
 {"section_title": "problem_list", "pattern": "PROBLEMS- ACTIVE:"}
 {"section_title": "problem_list", "pattern": "problem list"}
+{"section_title": "problem_list", "pattern": "current problems"}
 {"section_title": "sexual_and_social_history", "pattern": "SH:"}
 {"section_title": "sexual_and_social_history", "pattern": "social history:"}
 {"section_title": "sexual_and_social_history", "pattern": "PSHx:"}
@@ -151,11 +152,12 @@
 {"section_title": "observation_and_plan", "pattern": "impression/recommendations:"}
 {"section_title": "observation_and_plan", "pattern": "initial impression:"}
 {"section_title": "observation_and_plan", "pattern": "interpretation:"}
-{"section_title": "observation_and_plan", "pattern": "objective:"}
+//{"section_title": "observation_and_plan", "pattern": "objective:"}
 {"section_title": "observation_and_plan", "pattern": "plan and discussion:"}
 {"section_title": "observation_and_plan", "pattern": "plan discussion:"}
 {"section_title": "observation_and_plan", "pattern": "medical decision making:"}
 {"section_title": "observation_and_plan", "pattern": "plan:"}
+{"section_title": "subjective", "pattern": "subjective:"}
 {"section_title": "medication", "pattern": "ACTIVE INPATIENT AND OUTPATIENT  MEDICATIONS:"}
 {"section_title": "medication", "pattern": "ACTIVE MEDICATIONS:"}
 {"section_title": "medication", "pattern": "ACTIVE MEDICATIONS COMBINED:"}
@@ -331,7 +333,7 @@
 {"section_title": "allergy", "pattern": "ALLERGIES AS DISPLAYED IN VISTA:"}
 {"section_title": "allergy", "pattern": "Allergy/Other Non-VA or VA Meds:"}
 {"section_title": "allergy", "pattern": "ALLERGY ASSESSMENT:"}
-{"section_title": "chief_complaint", "pattern": "chief_complaint:"}
+{"section_title": "chief_complaint", "pattern": "Chief Complaint:"}
 {"section_title": "Physical Exam", "pattern": "Physical Exam:"}
 {"section_title": "Physical Exam", "pattern": "Review of systems:"}
 {"section_title": "Physical Exam", "pattern": "PHYSICAL EXAMINATION"}

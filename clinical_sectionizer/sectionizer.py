@@ -38,10 +38,11 @@ DEFAULT_ATTRS = {
 class Sectionizer:
     name = "sectionizer"
 
-    def __init__(self, nlp, patterns="default", add_attrs=False):
+    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None):
         self.nlp = nlp
         self.add_attrs = add_attrs
         self.matcher = Matcher(nlp.vocab)
+        self.max_scope = max_scope
         self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
         self.assertion_attributes_mapping = None
         self._patterns = []
@@ -103,6 +104,8 @@ class Sectionizer:
         patterns = []
         with open(filepath) as f:
             for line in f:
+                if line.startswith("//"):
+                    continue
                 patterns.append(json.loads(line))
 
         return patterns
@@ -180,12 +183,22 @@ class Sectionizer:
             (match_id, start, end) = match
             section_header = doc[start:end]
             name = self.nlp.vocab.strings[match_id]
+            # If this is the last match, it should include the rest of the doc
             if i == len(matches) - 1:
-                section_spans.append((name, section_header, doc[start:]))
+                if self.max_scope is None:
+                    section_spans.append((name, section_header, doc[start:]))
+                else:
+
+                    section_spans.append((name, section_header, doc[start:end+self.max_scope]))
+            # Otherwise, go until the next section header
             else:
                 next_match = matches[i + 1]
                 _, next_start, _ = next_match
-                section_spans.append((name, section_header, doc[start:next_start]))
+                if self.max_scope is None:
+                    section_spans.append((name, section_header, doc[start:next_start]))
+                else:
+                    section_spans.append((name, section_header, doc[start:end+self.max_scope]))
+
         for name, header, section in section_spans:
             doc._.sections.append((name, header, section))
             for token in section:
