@@ -61,3 +61,23 @@ class TestSectionizer:
         assert section_title == "past_medical_history"
         assert header.text == "Past Medical History:"
         assert section_span.text == "Past Medical History: PE"
+
+    def test_max_scope_none(self):
+        sectionizer = Sectionizer(nlp, patterns=None, max_scope=None)
+        sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"}])
+        doc = nlp("Past Medical History: This is the sentence.")
+        sectionizer(doc)
+        title, header, section = doc._.sections[0]
+        assert section[len(header)-1+2]._.section_title == "past_medical_history"
+        assert section[len(header)-1+3]._.section_title == "past_medical_history"
+
+    def test_max_scope(self):
+        sectionizer = Sectionizer(nlp, patterns=None, max_scope=2)
+        sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"}])
+        doc = nlp("Past Medical History: This is the sentence.")
+        sectionizer(doc)
+        title, header, section = doc._.sections[0]
+        assert section[len(header)-1+2]._.section_title == "past_medical_history"
+        assert section[len(header)-1+3]._.section_title is None
+
+

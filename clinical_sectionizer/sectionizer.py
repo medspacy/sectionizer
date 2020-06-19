@@ -188,8 +188,8 @@ class Sectionizer:
                 if self.max_scope is None:
                     section_spans.append((name, section_header, doc[start:]))
                 else:
-
-                    section_spans.append((name, section_header, doc[start:end+self.max_scope]))
+                    scope_end = min(end+self.max_scope, doc[-1].i)
+                    section_spans.append((name, section_header, doc[start:scope_end]))
             # Otherwise, go until the next section header
             else:
                 next_match = matches[i + 1]
@@ -197,7 +197,8 @@ class Sectionizer:
                 if self.max_scope is None:
                     section_spans.append((name, section_header, doc[start:next_start]))
                 else:
-                    section_spans.append((name, section_header, doc[start:end+self.max_scope]))
+                    scope_end = min(end+self.max_scope, next_start)
+                    section_spans.append((name, section_header, doc[start:scope_end]))
 
         for name, header, section in section_spans:
             doc._.sections.append((name, header, section))
