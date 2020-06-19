@@ -38,12 +38,12 @@ DEFAULT_ATTRS = {
 class Sectionizer:
     name = "sectionizer"
 
-    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None):
+    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None, phrase_matcher_attr="ORTH"):
         self.nlp = nlp
         self.add_attrs = add_attrs
         self.matcher = Matcher(nlp.vocab)
         self.max_scope = max_scope
-        self.phrase_matcher = PhraseMatcher(nlp.vocab, attr="LOWER")
+        self.phrase_matcher = PhraseMatcher(nlp.vocab, attr=phrase_matcher_attr)
         self.assertion_attributes_mapping = None
         self._patterns = []
         self._section_titles = set()

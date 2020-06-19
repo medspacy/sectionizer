@@ -1,8 +1,6 @@
 import pytest
-from add_parent_path import add_parent_path
 
-with add_parent_path(1):
-    from clinical_sectionizer import TextSectionizer
+from clinical_sectionizer import TextSectionizer
 
 
 class TestTextSectionizer:

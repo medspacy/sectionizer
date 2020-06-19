@@ -1,402 +1,109 @@
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "past", "OP": "?"}, {"LOWER": "medical"}, {"LOWER": {"IN": ["history", "hx"]}}]}
-{"section_title": "past_medical_history", "pattern": "mhx:"}
-{"section_title": "past_medical_history", "pattern": "mh:"}
-{"section_title": "past_medical_history", "pattern": "pmh:"}
-{"section_title": "past_medical_history", "pattern": "pohx:"}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "past"}, {"LOWER": "history"}, {"TEXT": ":"}]}
-{"section_title": "past_medical_history", "pattern": "history:"}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": {"REGEX": "p[hm]+"}}, {"LOWER": "computerized"}, {"LOWER": "problem"}, {"LOWER": "list"}, {"TEXT": ":"}]}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "significant"}, {"LOWER": "medical"}, {"LOWER": "hx"}, {"TEXT": ":"}]}
-{"section_title": "past_medical_history", "pattern": [{"LOWER": "past"}, {"LOWER": "medical"}]}
-{"section_title": "past_medical_history", "pattern": "past medical history/problem list:"}
-{"section_title": "past_medical_history", "pattern": "past surgical history:"}
-{"section_title": "past_medical_history", "pattern": "patient history:"}
-{"section_title": "past_medical_history", "pattern": "pt history:"}
-{"section_title": "past_medical_history", "pattern": "history/physical examination:"}
-{"section_title": "past_medical_history", "pattern": "history physical examination:"}
-{"section_title": "past_medical_history", "pattern": "clinical history:"}
-{"section_title": "past_medical_history", "pattern": "clinical history/indications:"}
-{"section_title": "past_medical_history", "pattern": "clinical history indication:"}
-{"section_title": "past_medical_history", "pattern": "clinical history indication:"}
-{"section_title": "past_medical_history", "pattern": "issues briefly as following:"}
-{"section_title": "past_medical_history", "pattern": "issue briefly as following:"}
-{"section_title": "past_medical_history", "pattern": "history:"}
-{"section_title": "past_medical_history", "pattern": "current medical problems:"}
-{"section_title": "past_medical_history", "pattern": "history of chronic illness:"}
-{"section_title": "past_medical_history", "pattern": "history chronic illness:"}
-{"section_title": "past_medical_history", "pattern": "clinical presentation:"}
-{"section_title": "past_medical_history", "pattern": "issues briefly as follows:"}
-{"section_title": "past_medical_history", "pattern": "issue briefly as follow:"}
-{"section_title": "past_medical_history", "pattern": "interval history:"}
-{"section_title": "past_medical_history", "pattern": "past medical history and review of system:"}
-{"section_title": "past_medical_history", "pattern": "past medical history review system:"}
-{"section_title": "past_medical_history", "pattern": "past medical problems:"}
-{"section_title": "past_medical_history", "pattern": "past medical problems:"}
-{"section_title": "past_medical_history", "pattern": "past medical problem:"}
-{"section_title": "past_medical_history", "pattern": "history of past illness:"}
-{"section_title": "past_medical_history", "pattern": "history past illness:"}
-{"section_title": "past_medical_history", "pattern": "past medical history:"}
-{"section_title": "past_medical_history", "pattern": "previous medical history:"}
-{"section_title": "past_medical_history", "pattern": "hematology/oncology history:"}
-{"section_title": "past_medical_history", "pattern": "hematology oncology history:"}
-{"section_title": "past_medical_history", "pattern": "history of general health:"}
-{"section_title": "past_medical_history", "pattern": "history general health:"}
-{"section_title": "past_medical_history", "pattern": "past medical history/past surgical history:"}
-{"section_title": "past_medical_history", "pattern": "past medical history past surgical history:"}
-{"section_title": "past_medical_history", "pattern":  "medical problems:"}
-{"section_title": "past_medical_history", "pattern":  "medical problem:"}
-{"section_title": "past_medical_history", "pattern":  "significant past medical history:"}
-{"section_title": "past_medical_history", "pattern":  "history of major illnesses and injuries:"}
-{"section_title": "past_medical_history", "pattern":  "history of major illness and injury:"}
-{"section_title": "past_medical_history", "pattern":  "history major illness injury:"}
-{"section_title": "past_medical_history", "pattern":  "past med history:"}
-{"section_title": "past_medical_history", "pattern":  "past hospitalization history:"}
-{"section_title": "past_medical_history", "pattern":  "medical history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical and surgical history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical surgical history:"}
-{"section_title": "past_medical_history", "pattern":  "brief medical history:"}
-{"section_title": "past_medical_history", "pattern":  "Past Medical History/Problem List:"}
-{"section_title": "past_medical_history", "pattern":  "brief medical history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history problem list:"}
-{"section_title": "past_medical_history", "pattern":  "past medical issues:"}
-{"section_title": "past_medical_history", "pattern":  "past medical issues:"}
-{"section_title": "past_medical_history", "pattern":  "past medical issue:"}
-{"section_title": "past_medical_history", "pattern":  "past_medical_history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history/surgical history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history surgical history:"}
-{"section_title": "past_medical_history", "pattern":  "past infectious history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history/family history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history family history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history family history:"}
-{"section_title": "past_medical_history", "pattern":  "Known Significant Medical Diagnoses and Conditions:"}
-{"section_title": "past_medical_history", "pattern":  "past history:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history and physical examination:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history physical examination:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history physical examination:"}
-{"section_title": "past_medical_history", "pattern":  "past medical history/physical examination:"}
-{"section_title": "past_medical_history", "pattern":  "past_medical_history_and_physical_examination:"}
-{"section_title": "past_medical_history", "pattern":  "Historical data:"}
-{"section_title": "family_history", "pattern": "family history:"}
-{"section_title": "problem_list", "pattern": "active problem list:"}
-{"section_title": "problem_list", "pattern": "chronic stable problems:"}
-{"section_title": "problem_list", "pattern": "PROBLEMS- ACTIVE:"}
-{"section_title": "problem_list", "pattern": "problem list"}
-{"section_title": "problem_list", "pattern": "current problems"}
-{"section_title": "sexual_and_social_history", "pattern": "SH:"}
-{"section_title": "sexual_and_social_history", "pattern": "social history:"}
-{"section_title": "sexual_and_social_history", "pattern": "PSHx:"}
-{"section_title": "sexual_and_social_history", "pattern": "soc hx:"}
-{"section_title": "sexual_and_social_history", "pattern": "mh/pshx:"}
-{"section_title": "sexual_and_social_history", "pattern": "sexual history"}
-{"section_title": "sexual_and_social_history", "pattern": "pmhsx:"}
-{"section_title": "sexual_and_social_history", "pattern": "pmhx/pshx:"}
-{"section_title": "sexual_and_social_history", "pattern": "sexual history:"}
-{"section_title": "sexual_and_social_history", "pattern": "LGBTQ SCREENING NWI:"}
-{"section_title": "hiv_screening", "pattern": "HIV:"}
-{"section_title": "hiv_screening", "pattern": "HIV Screening:"}
-{"section_title": "hiv_screening", "pattern": "HIV Risk:"}
-{"section_title": "observation_and_plan", "pattern": "ADDITIONAL ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": "MEDICAL DECISION MAKING/PLAN:"}
-{"section_title": "observation_and_plan", "pattern": "ASS:"}
-{"section_title": "observation_and_plan", "pattern": "ASSESMENT:"}
-{"section_title": "observation_and_plan", "pattern": "ASSESS:"}
-{"section_title": "observation_and_plan", "pattern": "ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": [{"LOWER": "assessment"}, {"OP": "?"}, {"LOWER": "plan"}]}
-{"section_title": "observation_and_plan", "pattern": "CLINICAL IMPRESSION:"}
-{"section_title": "observation_and_plan", "pattern": "Imp:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSION AND RECOMMENDATIONS:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSION RECOMMENDATION:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSION SECTION:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSION:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSION/ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSIONS:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSIONS/ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSSION:"}
-{"section_title": "observation_and_plan", "pattern": "IMPRESSSIONS:"}
-{"section_title": "observation_and_plan", "pattern": "INITAL IMPRESSION:"}
-{"section_title": "observation_and_plan", "pattern": "INITIAL ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": "INITIAL IMPRESSION:"}
-{"section_title": "observation_and_plan", "pattern": "INITIAL IMPRESSION/ASSESSMENT:"}
-{"section_title": "observation_and_plan", "pattern": "Recommendations:"}
-{"section_title": "observation_and_plan", "pattern": "A/P:"}
-{"section_title": "observation_and_plan", "pattern": "A/P:"}
-{"section_title": "observation_and_plan", "pattern": "A:"}
-{"section_title": "observation_and_plan", "pattern": "ASSESSMENT AND PLAN:"}
-{"section_title": "observation_and_plan", "pattern": "Impression:"}
-{"section_title": "observation_and_plan", "pattern": "assessment and plan:"}
-{"section_title": "observation_and_plan", "pattern": "assessment and recommendation:"}
-{"section_title": "observation_and_plan", "pattern": "assessment and recommendations:"}
-{"section_title": "observation_and_plan", "pattern": "assessment plan:"}
-{"section_title": "observation_and_plan", "pattern": "assessment recommendation:"}
-{"section_title": "observation_and_plan", "pattern": "assessment:"}
-{"section_title": "observation_and_plan", "pattern": "assessment/plan:"}
-{"section_title": "observation_and_plan", "pattern": "assessment:"}
-{"section_title": "observation_and_plan", "pattern": "assessment_and_plan:"}
-{"section_title": "observation_and_plan", "pattern": "clinical comment:"}
-{"section_title": "observation_and_plan", "pattern": "clinical comments:"}
-{"section_title": "observation_and_plan", "pattern": "clinical impression:"}
-{"section_title": "observation_and_plan", "pattern": "discharge diagnoses:"}
-{"section_title": "observation_and_plan", "pattern": "diagnoses:"}
-{"section_title": "observation_and_plan", "pattern": "discharge diagnosis:"}
-{"section_title": "observation_and_plan", "pattern": "diagnosis:"}
-{"section_title": "observation_and_plan", "pattern": "diagnosis:"}
-{"section_title": "observation_and_plan", "pattern": "impression and plan:"}
-{"section_title": "observation_and_plan", "pattern": "impression and plans:"}
-{"section_title": "observation_and_plan", "pattern": "impression and recommendation:"}
-{"section_title": "observation_and_plan", "pattern": "impression and recommendations:"}
-{"section_title": "observation_and_plan", "pattern": "impression plan:"}
-{"section_title": "observation_and_plan", "pattern": "impression recommendation:"}
-{"section_title": "observation_and_plan", "pattern": [{"LOWER": "impression"}, {"LOWER": {"IN": [":", "-", " "]}}]}
-{"section_title": "observation_and_plan", "pattern": "impresion:"}
-{"section_title": "observation_and_plan", "pattern": "impression/plan:"}
-{"section_title": "observation_and_plan", "pattern": "impression/recommendations:"}
-{"section_title": "observation_and_plan", "pattern": "initial impression:"}
-{"section_title": "observation_and_plan", "pattern": "interpretation:"}
-//{"section_title": "observation_and_plan", "pattern": "objective:"}
-{"section_title": "observation_and_plan", "pattern": "plan and discussion:"}
-{"section_title": "observation_and_plan", "pattern": "plan discussion:"}
-{"section_title": "observation_and_plan", "pattern": "medical decision making:"}
-{"section_title": "observation_and_plan", "pattern": "plan:"}
-{"section_title": "subjective", "pattern": "subjective:"}
-{"section_title": "medication", "pattern": "ACTIVE INPATIENT AND OUTPATIENT  MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE MEDICATIONS COMBINED:"}
-{"section_title": "medication", "pattern": "ACTIVE MEDICATIONS INCLUDE:"}
-{"section_title": "medication", "pattern": "ACTIVE MEDICATIONS LIST:"}
-{"section_title": "medication", "pattern": "ACTIVE MEDICATIONS PRESCRIBED AT SAGINAW VAMC:"}
-{"section_title": "medication", "pattern": "ACTIVE MEDICATIONS PRESCRIBED AT THE SAGINAW VAMC:"}
-{"section_title": "medication", "pattern": "ACTIVE NON-VA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE NONVA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE NON VA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE OPT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE OUTPATIENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE OUTPATIENT PRESCRIPTIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE VA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ACTIVE  MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ADMISSION MEDICATIONS:"}
-{"section_title": "medication", "pattern": "ALL ACTIVE MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Active Inpatient Medications (including supplies):"}
-{"section_title": "medication", "pattern": "Active Inpatient Medications drug dosage:"}
-{"section_title": "medication", "pattern": "Active Inpatient Medications status:"}
-{"section_title": "medication", "pattern": "Active Medications (including supplies):"}
-{"section_title": "medication", "pattern": "Active Medications from Remote Data:"}
-{"section_title": "medication", "pattern": "Active Outpatient Medications (including supplies):"}
-{"section_title": "medication", "pattern": "Active medications:"}
-{"section_title": "medication", "pattern": "Active medications? prior to admission:"}
-{"section_title": "medication", "pattern": "CORRECT MEDICATIONS INCLUDE:"}
-{"section_title": "medication", "pattern": "CURRENT INPATIENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "CURRENT INPATIENT MEDICATIONS INCLUDE:"}
-{"section_title": "medication", "pattern": "CURRENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "CURRENT MEDICATIONS/RECONCILIATION:"}
-{"section_title": "medication", "pattern": "CURRENT MEDICATIONS LIST:"}
-{"section_title": "medication", "pattern": "DISCHARGE MEDICATIONS:"}
-{"section_title": "medication", "pattern": "DRUGS:"}
-{"section_title": "medication", "pattern": "HEALTH SUPPLEMENTS:"}
-{"section_title": "medication", "pattern": "HISTORY/MEDICATIONS:"}
-{"section_title": "medication", "pattern": "HISTORY OF MEDICATION TREATMENTS:"}
-{"section_title": "medication", "pattern": "HISTORY OF MEDICATION USE:"}
-{"section_title": "medication", "pattern": "Home medications:"}
-{"section_title": "medication", "pattern": "INACTIVE OUTPATIENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "INHOSPITAL MEDICATIONS:"}
-{"section_title": "medication", "pattern": "INPATIENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "INPATIENT MEDICATION RECONCILIATION:"}
-{"section_title": "medication", "pattern": "INPT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Inpatient medications?:"}
-{"section_title": "medication", "pattern": "Inpatient medications? =:"}
-{"section_title": "medication", "pattern": "MEDICATION(S) REVIEW:"}
-{"section_title": "medication", "pattern": "MEDICATIONS:"}
-{"section_title": "medication", "pattern": "MEDICATIONS AT ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATIONS AT DISCHARGE:"}
-{"section_title": "medication", "pattern": "MEDICATIONS DURING ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATIONS GIVEN TODAY:"}
-{"section_title": "medication", "pattern": "MEDICATIONS ON ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATIONS ON DISCHARGE:"}
-{"section_title": "medication", "pattern": "MEDICATIONS PRIOR TO ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION AT ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION AT DISCHARGE:"}
-{"section_title": "medication", "pattern": "MEDICATION DURING ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION HISTORY:"}
-{"section_title": "medication", "pattern": "MEDICATION MANAGEMENT AT DISCHARGE:"}
-{"section_title": "medication", "pattern": "MEDICATION ON ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION PRIOR ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION PRIOR TO ADMISSION:"}
-{"section_title": "medication", "pattern": "MEDICATION RECONCILIATION:"}
-{"section_title": "medication", "pattern": "MEDICATION RECONCILIATION REVIEW:"}
-{"section_title": "medication", "pattern": "MEDICATION RECONCILIATION SUMMARY:"}
-{"section_title": "medication", "pattern": "MEDICATION RECONCILLIATION:"}
-{"section_title": "medication", "pattern": "MEDICATION REVIEW for MEDICATION RECONCILIATION:"}
-{"section_title": "medication", "pattern": "MEDICINES AT PHARMACY:"}
-{"section_title": "medication", "pattern": "MED RECON:"}
-{"section_title": "medication", "pattern": "MED RECONCILIATION:"}
-{"section_title": "medication", "pattern": "MED RECONCILIATION OUTPT:"}
-{"section_title": "medication", "pattern": "MISUSE OF MEDICATIONS:"}
-{"section_title": "medication", "pattern": "M E D I C A T I O N S:"}
-{"section_title": "medication", "pattern": "NON-VA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "NON-VA PRESCRIBED:"}
-{"section_title": "medication", "pattern": "NON-VA PRESCRIPTIONS:"}
-{"section_title": "medication", "pattern": "NON-VA PRESCRIPTION MEDICATIONS:"}
-{"section_title": "medication", "pattern": "NON-VA SUPPLIED MEDICATIONS:"}
-{"section_title": "medication", "pattern": "NONVA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "NONVA MEDICATIONS LIST:"}
-{"section_title": "medication", "pattern": "NON VA:"}
-{"section_title": "medication", "pattern": "NON VA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "NON VA PRESCRIBED:"}
-{"section_title": "medication", "pattern": "NON VA PRESCRIPTIONS:"}
-{"section_title": "medication", "pattern": "NON VA PRESCRIPTION MEDICATIONS:"}
-{"section_title": "medication", "pattern": "NON VA SUPPLIED MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Non-VA medications:"}
-{"section_title": "medication", "pattern": "OUTPATIENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "OUTPATIENT MEDICATION REVIEW:"}
-{"section_title": "medication", "pattern": "OUTPT. MEDICATION RECONCILIATION:"}
-{"section_title": "medication", "pattern": "OUTPT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Outpatient medications:"}
-{"section_title": "medication", "pattern": "Outpatient medications status:"}
-{"section_title": "medication", "pattern": "Outpatient meds DRUG List:"}
-{"section_title": "medication", "pattern": "PENDING INPATIENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "PRE-ADMISSION MEDICATIONS:"}
-{"section_title": "medication", "pattern": "PRE-VISIT MED RECONCILIATION:"}
-{"section_title": "medication", "pattern": "PREADMISSION MEDICATION:"}
-{"section_title": "medication", "pattern": "PRESENT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "PROVIDER MED RECONCILIATION:"}
-{"section_title": "medication", "pattern": "PTA Meds:"}
-{"section_title": "medication", "pattern": "RECONCILED MEDICATION LIST:"}
-{"section_title": "medication", "pattern": "RECONCILIATION:"}
-{"section_title": "medication", "pattern": "RECONCILIATION OF MEDICATIONS COMPLETED:"}
-{"section_title": "medication", "pattern": "SIGNIFICANT MEDICATIONS:"}
-{"section_title": "medication", "pattern": "SUBSTANCE USE/MISUSE OF MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Status Active:"}
-{"section_title": "medication", "pattern": "VA MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Active Outpatient Medications:"}
-{"section_title": "medication", "pattern": "meds:"}
-{"section_title": "medication", "pattern": "MEDICATIONS:"}
-{"section_title": "medication", "pattern": "summary of medications"}
-{"section_title": "medication", "pattern": "MEDICATIONS (as listed in Vista):"}
-{"section_title": "medication", "pattern": "OTC OR NON-VA PRESCRIPTION MEDICATIONS:"}
-{"section_title": "medication", "pattern": "Active Outpatient Medications (including Supplies):"}
-{"section_title": "allergy", "pattern": "A L L E R G I E S:"}
-{"section_title": "allergy", "pattern": "ADDITIONAL ADRS AND/OR ALLERGIES:"}
-{"section_title": "allergy", "pattern": "ADR:"}
-{"section_title": "allergy", "pattern": "ADVERSE DRUG REACTIONS:"}
-{"section_title": "allergy", "pattern": "ADVERSE EVENTS:"}
-{"section_title": "allergy", "pattern": "ADVERSE REACTION:"}
-{"section_title": "allergy", "pattern": "ADVERSE REACTIONS:"}
-{"section_title": "allergy", "pattern": "ALLERGIC DISORDER HISTORY:"}
-{"section_title": "allergy", "pattern": "ALLERGIC REACTIONS:"}
-{"section_title": "allergy", "pattern": "ALLERGIC:"}
-{"section_title": "allergy", "pattern": "ALLERGIES AND ADVERSE REACTIONS:"}
-{"section_title": "allergy", "pattern": "ALLERGIES AND SENSITIVITIES:"}
-{"section_title": "allergy", "pattern": "ALLERGIES FAMILY HISTORY:"}
-{"section_title": "allergy", "pattern": "ALLERGIES REVIEWED:"}
-{"section_title": "allergy", "pattern": "ALLERGIES TO MEDICATIONS:"}
-{"section_title": "allergy", "pattern": "ALLERGIES/ADVERSE REACTIONS:"}
-{"section_title": "allergy", "pattern": "ALLERGIES/REACTIONS:"}
-{"section_title": "allergy", "pattern": "ALLERGIES:"}
-{"section_title": "allergy", "pattern": "ALLERGY ADVERSE REACTION:"}
-{"section_title": "allergy", "pattern": "ALLERGY ENVIRONMENTAL ALLERGEN:"}
-{"section_title": "allergy", "pattern": "ALLERGY FAMILY HISTORY:"}
-{"section_title": "allergy", "pattern": "ALLERGY INFORMATION:"}
-{"section_title": "allergy", "pattern": "ALLERGY REVIEW:"}
-{"section_title": "allergy", "pattern": "ALLERGY SCREENING:"}
-{"section_title": "allergy", "pattern": "ALLERGY SYMPTOM:"}
-{"section_title": "allergy", "pattern": "ALLERGY SYMPTOMS:"}
-{"section_title": "allergy", "pattern": "ALLERGY TO ENVIRONMENTAL ALLERGEN:"}
-{"section_title": "allergy", "pattern": "ALLERGY TO ENVIRONMENTAL ALLERGENS:"}
-{"section_title": "allergy", "pattern": "ALLERGY/ADVERSE DRUG REACTION HISTORY:"}
-{"section_title": "allergy", "pattern": "ALLERGY/ADVERSE DRUG REACTION INFORMATION:"}
-{"section_title": "allergy", "pattern": "ALLERGY/ADVERSE DRUG REACTION:"}
-{"section_title": "allergy", "pattern": "ALLERGY:"}
-{"section_title": "allergy", "pattern": "CONCOMITANT MEDICATIONS:"}
-{"section_title": "allergy", "pattern": "CURRENT ALLERGIES:"}
-{"section_title": "allergy", "pattern": "DRUG ALLERGIC REACTIONS:"}
-{"section_title": "allergy", "pattern": "DRUG ALLERGIES:"}
-{"section_title": "allergy", "pattern": "DRUG SENSITIVITIES:"}
-{"section_title": "allergy", "pattern": "FOOD & DRUG REACTIONS INCLUDING ALLERGIES AS ENTERED IN CPRS:"}
-{"section_title": "allergy", "pattern": "FOOD ALLERGIES:"}
-{"section_title": "allergy", "pattern": "HISTORY ALLERGY:"}
-{"section_title": "allergy", "pattern": "HISTORY OF ALLERGIES:"}
-{"section_title": "allergy", "pattern": "KNOWN ALLERGIES:"}
-{"section_title": "allergy", "pattern": "LATEX ALLERGY:"}
-{"section_title": "allergy", "pattern": "MEDICATIONS ALLERGIES:"}
-{"section_title": "allergy", "pattern": "NEW ALLERGIES:"}
-{"section_title": "allergy", "pattern": "NEWLY IDENTIFIED ALLERGIES:"}
-{"section_title": "allergy", "pattern": "OTHER ALLERGIES:"}
-{"section_title": "allergy", "pattern": "PREVIOUSLY DOCUMENTED ALLERGIES:"}
-{"section_title": "allergy", "pattern": "SEASONAL ALLERGIES:"}
-{"section_title": "allergy", "pattern": "SEASONAL ALLERGY:"}
-{"section_title": "allergy", "pattern": "SENSITIVITIES:"}
-{"section_title": "allergy", "pattern": "allergies:"}
-{"section_title": "allergy", "pattern": "allergy:"}
-{"section_title": "allergy", "pattern": "allergies/adr:"}
-{"section_title": "allergy", "pattern": "allergies:"}
-{"section_title": "allergy", "pattern": "allergy"}
-{"section_title": "allergy", "pattern": "ALLERGIES AS DISPLAYED IN VISTA:"}
-{"section_title": "allergy", "pattern": "Allergy/Other Non-VA or VA Meds:"}
-{"section_title": "allergy", "pattern": "ALLERGY ASSESSMENT:"}
+{"section_title": "addendum", "pattern": "ADDENDUM:"}
+{"section_title": "addendum", "pattern": "Addendum:"}
+{"section_title": "allergies", "pattern": "ALLERGIC REACTIONS:"}
+{"section_title": "allergies", "pattern": "ALLERGIES:"}
+{"section_title": "chief_complaint", "pattern": "CC:"}
+{"section_title": "chief_complaint", "pattern": "CHIEF COMPLAINT:"}
 {"section_title": "chief_complaint", "pattern": "Chief Complaint:"}
-{"section_title": "Physical Exam", "pattern": "Physical Exam:"}
-{"section_title": "Physical Exam", "pattern": "Review of systems:"}
-{"section_title": "Physical Exam", "pattern": "PHYSICAL EXAMINATION"}
-{"section_title": "Physical Exam", "pattern": "PE:"}
-{"section_title": "Physical Exam", "pattern": "exam:"}
-{"section_title": "ED_Course", "pattern": "ED COURSE:"}
-{"section_title": "ED_Course", "pattern": "Er COURSE:"}
-{"section_title": "ED_Course", "pattern": "Emergency Department Course"}
-{"section_title": "labs_and_studies", "pattern": "findings :"}
-{"section_title": "labs_and_studies", "pattern": "LABORATORY DATA:"}
-{"section_title": "labs_and_studies", "pattern": "operation and findings:"}
-{"section_title": "labs_and_studies", "pattern": "operative findings:"}
-{"section_title": "labs_and_studies", "pattern": "pathologic staging:"}
-{"section_title": "labs_and_studies", "pattern": "pathology report:"}
-{"section_title": "labs_and_studies", "pattern": "performing lab:"}
-{"section_title": "labs_and_studies", "pattern": "performing laboratory:"}
-{"section_title": "labs_and_studies", "pattern": "reporting lab :"}
-{"section_title": "labs_and_studies", "pattern": "objective:"}
-{"section_title": "labs_and_studies", "pattern": "s/o:"}
-{"section_title": "labs_and_studies", "pattern": "indication:"}
-{"section_title": "labs_and_studies", "pattern": "clinical indication:"}
-{"section_title": "labs_and_studies", "pattern": "indication:"}
-{"section_title": "labs_and_studies", "pattern": "indications:"}
-{"section_title": "labs_and_studies", "pattern":  "micro:"}
-{"section_title": "labs_and_studies", "pattern":  "micro exam "}
-{"section_title": "labs_and_studies", "pattern": "labs:"}
-{"section_title": "present_illness", "pattern": "hpi/interval history:"}
-{"section_title": "present_illness", "pattern": "hpi interval history:"}
-{"section_title": "present_illness", "pattern": "patient hpi:"}
-{"section_title": "present_illness", "pattern": "present illness:"}
-{"section_title": "present_illness", "pattern": "history_present_illness:"}
-{"section_title": "present_illness", "pattern": "history of the present illness:"}
-{"section_title": "present_illness", "pattern": "history of present illness:"}
-{"section_title": "present_illness", "pattern": "history present illness:"}
-{"section_title": "present_illness", "pattern": "summary of present illness:"}
-{"section_title": "present_illness", "pattern": "summary present illness"}
-{"section_title": "other", "pattern":  "A signed copy of this report:"}
-{"section_title": "other", "pattern":  "modified report:"}
-{"section_title": "other", "pattern":  "note:"}
-{"section_title": "other", "pattern":  "postoperative diagnosis:"}
-{"section_title": "other", "pattern":  "preoperative diagnosis:"}
-{"section_title": "other", "pattern":  "procedure:"}
-{"section_title": "other", "pattern":  "rectal mass:"}
-{"section_title": "other", "pattern":  "regional lymph nodes:"}
-{"section_title": "other", "pattern":  "result:"}
-{"section_title": "other", "pattern":  "smw:"}
-{"section_title": "other", "pattern":  "sp:"}
-{"section_title": "other", "pattern":  "submitted:"}
-{"section_title": "other", "pattern":  "summary of section:"}
-{"section_title": "other", "pattern":  "supplementary report:"}
-{"section_title": "other", "pattern":  "supplementary report:"}
-{"section_title": "other", "pattern":  "synoptic report for colon rectum:"}
-{"section_title": "other", "pattern":  "test performed at:"}
-{"section_title": "other", "pattern":  "tumor synopsis:"}
-{"section_title": "other", "pattern": "Alcohol Screen (AUDIT-C):"}
-{"section_title": "other", "pattern": "/es/:"}
-{"section_title": "other", "pattern": "medications held or discontinued upon admission:"}
-{"section_title": "other", "pattern": "changes/additions:"}
-{"section_title": "other", "pattern": "possible risks or complications include"}
+{"section_title": "comments", "pattern": "COMMENTS:"}
+{"section_title": "diagnoses", "pattern": "ADMISSION DIAGNOSES:"}
+{"section_title": "diagnoses", "pattern": "DIAGNOSES:"}
+{"section_title": "diagnoses", "pattern": "Primary Diagnosis:"}
+{"section_title": "diagnoses", "pattern": "Primary:"}
+{"section_title": "diagnoses", "pattern": "SECONDARY DIAGNOSES:"}
+{"section_title": "diagnoses", "pattern": "Secondary Diagnoses:"}
+{"section_title": "diagnoses", "pattern": "Secondary Diagnosis:"}
+{"section_title": "diagnoses", "pattern": "Secondary:"}
+{"section_title": "family_history", "pattern": "Family History:"}
+{"section_title": "hospital_course", "pattern": "Brief Hospital Course:"}
+{"section_title": "hospital_course", "pattern": "CONCISE SUMMARY OF HOSPITAL COURSE BY ISSUE/SYSTEM:"}
+{"section_title": "hospital_course", "pattern": "HOSPITAL COURSE:"}
+{"section_title": "hospital_course", "pattern": "SUMMARY OF HOSPITAL COURSE:"}
+{"section_title": "imaging", "pattern": "IMAGING:"}
+{"section_title": "imaging", "pattern": "INTERPRETATION:"}
+{"section_title": "imaging", "pattern": "Imaging:"}
 {"section_title": "imaging", "pattern": "MRI:"}
+{"section_title": "imaging", "pattern": "Radiology:"}
+{"section_title": "labs_and_studies", "pattern": "ADMISSION LABS:"}
+{"section_title": "labs_and_studies", "pattern": "Admission Labs:"}
+{"section_title": "labs_and_studies", "pattern": "Discharge Labs:"}
+{"section_title": "labs_and_studies", "pattern": "ECHO:"}
+{"section_title": "labs_and_studies", "pattern": "FINDINGS:"}
+{"section_title": "labs_and_studies", "pattern": "Findings:"}
+{"section_title": "labs_and_studies", "pattern": "INDICATION:"}
+{"section_title": "labs_and_studies", "pattern": "LABS:"}
+{"section_title": "labs_and_studies", "pattern": "Labs:"}
+{"section_title": "labs_and_studies", "pattern": "MICRO:"}
+{"section_title": "labs_and_studies", "pattern": "Micro:"}
+{"section_title": "labs_and_studies", "pattern": "Microbiology:"}
+{"section_title": "labs_and_studies", "pattern": "Pertinent Results:"}
+{"section_title": "labs_and_studies", "pattern": "STUDIES:"}
+{"section_title": "labs_and_studies", "pattern": "Studies:"}
+{"section_title": "medications", "pattern": "ACTIVE MEDICATIONS LIST:"}
+{"section_title": "medications", "pattern": "ACTIVE MEDICATIONS:"}
+{"section_title": "medications", "pattern": "ADMISSION MEDICATIONS:"}
+{"section_title": "medications", "pattern": "CURRENT MEDICATIONS:"}
+{"section_title": "medications", "pattern": "DISCHARGE MEDICATIONS:"}
+{"section_title": "medications", "pattern": "Discharge Medications:"}
+{"section_title": "medications", "pattern": "HOME MEDICATIONS:"}
+{"section_title": "medications", "pattern": "MEDICATIONS AT HOME:"}
+{"section_title": "medications", "pattern": "MEDICATIONS LIST:"}
+{"section_title": "medications", "pattern": "MEDICATIONS ON ADMISSION:"}
+{"section_title": "medications", "pattern": "MEDICATIONS ON DISCHARGE:"}
+{"section_title": "medications", "pattern": "MEDICATIONS ON TRANSFER:"}
+{"section_title": "medications", "pattern": "MEDICATIONS PRIOR TO ADMISSION:"}
+{"section_title": "medications", "pattern": "MEDICATIONS:"}
+{"section_title": "medications", "pattern": "MEDICATIONS:"}
+{"section_title": "neurological", "pattern": "Neuro:"}
+{"section_title": "observation_and_plan", "pattern": "A/P:"}
+{"section_title": "observation_and_plan", "pattern": "ASSESSMENT/PLAN:"}
+{"section_title": "observation_and_plan", "pattern": "ASSESSMENT:"}
+{"section_title": "observation_and_plan", "pattern": "Assessment/Plan:"}
+{"section_title": "observation_and_plan", "pattern": "Clinical Impression:"}
+{"section_title": "observation_and_plan", "pattern": "DISCHARGE DIAGNOSES:"}
+{"section_title": "observation_and_plan", "pattern": "DISCHARGE DIAGNOSIS:"}
+{"section_title": "observation_and_plan", "pattern": "Discharge Condition:"}
+{"section_title": "observation_and_plan", "pattern": "Discharge Diagnoses:"}
+{"section_title": "observation_and_plan", "pattern": "Discharge Diagnosis:"}
+{"section_title": "observation_and_plan", "pattern": "Discharge Disposition:"}
+{"section_title": "observation_and_plan", "pattern": "FINAL DIAGNOSES:"}
+{"section_title": "observation_and_plan", "pattern": "FINAL DIAGNOSIS:"}
+{"section_title": "observation_and_plan", "pattern": "IMPRESSION:"}
+{"section_title": "observation_and_plan", "pattern": "Impression and Plan:"}
+{"section_title": "observation_and_plan", "pattern": "Impression and Recommendation:"}
+{"section_title": "other", "pattern": "Facility:"}
+{"section_title": "other", "pattern": "Service:"}
+{"section_title": "past_medical_history", "pattern": "Current Medical Problems:"}
+{"section_title": "past_medical_history", "pattern": "History of Chronic Illness:"}
+{"section_title": "past_medical_history", "pattern": "MHx:"}
+{"section_title": "past_medical_history", "pattern": "PAST HISTORY:"}
+{"section_title": "past_medical_history", "pattern": "PAST MEDICAL HISTORY:"}
+{"section_title": "past_medical_history", "pattern": "PAST MEDICAL Hx:"}
+{"section_title": "past_medical_history", "pattern": "PAST SURGICAL HISTORY:"}
+{"section_title": "past_medical_history", "pattern": "PMH:"}
+{"section_title": "past_medical_history", "pattern": "PMHx:"}
+{"section_title": "past_medical_history", "pattern": "Past Medical History:"}
+{"section_title": "past_medical_history", "pattern": "UNDERLYING MEDICAL CONDITION:"}
+{"section_title": "patient_education", "pattern": "Education:"}
+{"section_title": "patient_education", "pattern": "Patient Education:"}
+{"section_title": "patient_instructions", "pattern": "DISCHARGE INSTRUCTIONS/FOLLOWUP:"}
+{"section_title": "patient_instructions", "pattern": "DISCHARGE INSTRUCTIONS:"}
 {"section_title": "patient_instructions", "pattern": "Discharge Instructions:"}
 {"section_title": "patient_instructions", "pattern": "Followup Instructions:"}
-{"section_title": "patient_instructions", "pattern": "Instructions:"}
+{"section_title": "physical_exam", "pattern": "PE:"}
+{"section_title": "physical_exam", "pattern": "PHYSICAL EXAM:"}
+{"section_title": "physical_exam", "pattern": "PHYSICAL EXAMINATION:"}
+{"section_title": "physical_exam", "pattern": "Physical Exam:"}
+{"section_title": "problem_list", "pattern": "Active Problem List:"}
+{"section_title": "problem_list", "pattern": "Current Problems:"}
+{"section_title": "problem_list", "pattern": "Medical Problems:"}
+{"section_title": "problem_list", "pattern": "PROBLEM LIST:"}
+{"section_title": "problem_list", "pattern": "Problem List:"}
+{"section_title": "reason_for_examination", "pattern": "REASON FOR THIS EXAMINATION:"}
+{"section_title": "signature", "pattern": "Electronic Signature:"}
 {"section_title": "signature", "pattern": "Signed electronically by:"}
-{"section_title": "education", "pattern": "Patient Education:"}
-{"section_title": "education", "pattern": "Education:"}
+{"section_title": "social_history", "pattern": "PMHSx:"}
+{"section_title": "social_history", "pattern": "PSH:"}
+{"section_title": "social_history", "pattern": "SH:"}
+{"section_title": "social_history", "pattern": "Sexual History:"}
+{"section_title": "social_history", "pattern": "Social History:"}
