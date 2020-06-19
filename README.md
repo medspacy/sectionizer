@@ -21,7 +21,9 @@ following extensions to spaCy objects:
 - `Span` attributes corresponding `section_span`, `section_header`, and `section_title` to the first token in a span
 
 When using `TextSectionizer`, calling `sectionizer(text)` returns a list of 3-tuples which correspond to the outputs 
-described above, but each as texts rather than spaCy objects: `(section_title, section_header, section_text)`
+described above, but each as texts rather than spaCy objects: `(section_title, section_header, section_text)`.
+
+Sectionizng works best when you have robust and complete patterns which are designed specifically to your data. Each EHR uses different section titles, so you should adjust your patterns accordingly. A default list of patterns is loaded when using `patterns="default"`. You can also set `max_scope`, which will limit the size of a section to a certain number of tokens. This can be useful to prevent sections for running on too far if following section headers aren't recognized.
 
 # Installation
 You can install `clinical_sectionizer` via pip:
