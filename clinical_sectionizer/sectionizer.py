@@ -38,7 +38,7 @@ DEFAULT_ATTRS = {
 class Sectionizer:
     name = "sectionizer"
 
-    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None, phrase_matcher_attr="ORTH"):
+    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None, phrase_matcher_attr="LOWER"):
         self.nlp = nlp
         self.add_attrs = add_attrs
         self.matcher = Matcher(nlp.vocab)
