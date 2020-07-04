@@ -9,7 +9,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="clinical_sectionizer",
-    version="0.1.2",
+    version="0.1.3",
     description="Document section detector using spaCy for clinical NLP",
     author="medSpaCy",
     author_email="medspacy.dev@gmail.com",

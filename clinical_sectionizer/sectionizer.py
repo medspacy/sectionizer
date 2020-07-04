@@ -4,13 +4,14 @@ from spacy.matcher import Matcher, PhraseMatcher
 # Filepath to default rules which are included in package
 from os import path
 from pathlib import Path
+import re
 
-from ._utils import *
+from . import util
 
 Doc.set_extension("sections", default=list(), force=True)
-Doc.set_extension("section_titles", getter=get_section_titles, force=True)
-Doc.set_extension("section_headers", getter=get_section_headers, force=True)
-Doc.set_extension("section_spans", getter=get_section_spans, force=True)
+Doc.set_extension("section_titles", getter=util.get_section_titles, force=True)
+Doc.set_extension("section_headers", getter=util.get_section_headers, force=True)
+Doc.set_extension("section_spans", getter=util.get_section_spans, force=True)
 
 Token.set_extension("section_span", default=None, force=True)
 Token.set_extension("section_title", default=None, force=True)
@@ -38,12 +39,55 @@ DEFAULT_ATTRS = {
 class Sectionizer:
     name = "sectionizer"
 
-    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None, phrase_matcher_attr="LOWER"):
+    def __init__(self, nlp, patterns="default", add_attrs=False, max_scope=None, phrase_matcher_attr="LOWER",
+                 require_start_line=False, require_end_line=False, newline_pattern=r"[\n\r]+[\s]*$"):
+        """Create a new Sectionizer component. The sectionizer will search for spans in the text which
+        match section header patterns, such as 'Past Medical History:'. Sections will be represented
+        in custom attributes as:
+            section_title (str): A normalized title of the section. Example: 'past_medical_history'
+            section_header (Span): The Span of the doc which was matched as a section header.
+                Example: 'Past Medical History:'
+            section (Span): The entire section of the note, starting with section_header and up until the end
+                of the section, which will be either the start of the next section header of some pre-specified
+                scope. Example: 'Past Medical History: Type II DM'
+
+        Section attributes will be registered for each Doc, Span, and Token in the following attributes:
+            Doc._.sections: A list of 3-tuples of (section_title, section_header, section). A Doc
+                will also have attributes corresponding to lists of each (ie., Doc._.section_titles,
+                Doc._.section_headers, Doc._.section_spans)
+            (Span|Token)._.section_title
+            (Span|Token)._.section_header
+            (Span|Token)._.section
+
+        Args:
+            nlp: A SpaCy language model object
+            patterns (str, list, or None): Where to read patterns from. Default is "default", which will
+                load the default patterns provided by medSpaCy, which are derived from MIMIC-II.
+                If a list, should be a list of pattern dicts following these conventional spaCy formats:
+                    [
+                        {"section_title": "past_medical_history", "pattern": "Past Medical History:"},
+                        {"section_title": "problem_list", "pattern": [{"TEXT": "PROBLEM"}, {"TEXT": "LIST"}, {"TEXT": ":"}]}
+                    ]
+                If a string other than "default", should be a path to a jsonl file containing patterns.
+            max_scope (None or int): Optional argument specifying the maximum number of tokens following a section header
+                which can be included in a section. This can be useful if you think your section patterns are incomplete
+                and want to prevent sections from running too long in the note. Default is None, meaning that the scope
+                of a section will be until either the next section header or the end of the document.
+            phrase_matcher_attr (str): The name of the token attribute which will be used by the PhraseMatcher
+                for any patterns with a "pattern" value of a string.
+            require_start_line (bool): Optionally require a section header to start on a new line. Default False.
+            require_end_line (bool): Optionally require a section header to end with a new line. Default False.
+            newline_pattern (str): Regular expression to match the new line either preceding or following a header
+                if either require_start_line or require_end_line are True.
+        """
         self.nlp = nlp
         self.add_attrs = add_attrs
         self.matcher = Matcher(nlp.vocab)
         self.max_scope = max_scope
         self.phrase_matcher = PhraseMatcher(nlp.vocab, attr=phrase_matcher_attr)
+        self.require_start_line = require_start_line
+        self.require_end_line = require_end_line
+        self.newline_pattern = re.compile(newline_pattern)
         self.assertion_attributes_mapping = None
         self._patterns = []
         self._section_titles = set()
@@ -167,9 +211,15 @@ class Sectionizer:
                     setattr(ent._, attr_name, attr_value)
 
 
+
+
     def __call__(self, doc):
         matches = self.matcher(doc)
         matches += self.phrase_matcher(doc)
+        if self.require_start_line:
+            matches = self.filter_start_lines(doc, matches)
+        if self.require_end_line:
+            matches = self.filter_end_lines(doc, matches)
         matches = prune_overlapping_matches(matches)
         if len(matches) == 0:
             doc._.sections.append((None, None, doc[0:]))
@@ -212,6 +262,14 @@ class Sectionizer:
         if self.add_attrs is True:
             self.set_assertion_attributes(doc.ents)
         return doc
+
+    def filter_start_lines(self, doc, matches):
+        "Filter a list of matches to only contain spans where the start token is the beginning of a new line."
+        return [m for m in matches if util.is_start_line(m[1], doc, self.newline_pattern)]
+
+    def filter_end_lines(self, doc, matches):
+        "Filter a list of matches to only contain spans where the start token is followed by a new line."
+        return [m for m in matches if util.is_end_line(m[2]-1, doc, self.newline_pattern)]
 
 def prune_overlapping_matches(matches, strategy="longest"):
     if strategy != "longest":
