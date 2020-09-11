@@ -14,7 +14,9 @@ setup(
     author="medSpaCy",
     author_email="medspacy.dev@gmail.com",
     packages=["clinical_sectionizer"],
-    install_requires=["spacy>=2.2.2"],
+    install_requires=[
+        "spacy>=2.3.0,<3.0.0",
+    ],
     long_description=long_description,
     long_description_content_type="text/markdown",
     package_data={"clinical_sectionizer": ["../resources/*"]},
