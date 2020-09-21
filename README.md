@@ -1,5 +1,11 @@
 # Clinical Sectionizer
-This package offers a component for tagging clinical section titles in docs. There are two different flavors of the sectionizer:
+This package offers a component for tagging clinical section titles in docs. 
+
+
+**Clinical Sectionizer** is part of the [medSpaCy](https://github.com/medspacy/medspacy) project and can be installed separately or as part of a medSpaCy pipeline.
+[<img src="https://github.com/medspacy/medspacy/raw/master/images/medspacy_logo.png" align="center">](https://github.com/medspacy/medspacy)
+
+There are two different flavors of the sectionizer:
 - `Sectionizer`: A spaCy component which is run on a `Doc` object and adds attributes to spaCy objects. This can be added
 to an NLP pipeline and be executed as part of `nlp(text)`
 - `TextSectionizer`: A stand-alone object, independent of spaCy which takes a text and returns a list of tuples, where
