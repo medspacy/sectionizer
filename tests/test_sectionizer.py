@@ -80,4 +80,20 @@ class TestSectionizer:
         assert section[len(header)-1+2]._.section_title == "past_medical_history"
         assert section[len(header)-1+3]._.section_title is None
 
+    def test_start_line(self):
+        sectionizer = Sectionizer(nlp, patterns=None, require_start_line=True)
+        sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"}])
+        text = "\n\n Past Medical History: The patient has a Past Medical History:"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 2
+
+    def test_end_line(self):
+        sectionizer = Sectionizer(nlp, patterns=None, require_end_line=True)
+        sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"}])
+        text = "\n\n Past Medical History:\n The patient has a Past Medical History: this"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 2
+
 
