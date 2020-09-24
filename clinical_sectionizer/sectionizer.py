@@ -294,6 +294,11 @@ class Sectionizer:
 
         section_spans_with_parent = self.set_parent_sections(section_spans)
 
+        # if there are no sections after required rules remove them, add one section over the entire document and exit
+        if len(section_spans_with_parent) == 0:
+            doc._.sections.append((None, None, None, doc[0:]))
+            return doc
+
         for name, header, parent, section in section_spans_with_parent:
             doc._.sections.append((name, header, parent, section))
             for token in section:

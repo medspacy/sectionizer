@@ -155,3 +155,15 @@ class TestSectionizer:
         assert explanation_parent == "past_medical_history"
         assert allergies_parent is None
         assert explanation_parent2 == "allergies"
+
+    def test_parent_section_parent_required(self):
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"},
+                        {"section_title": "explanation", "pattern": "Explanation:", "parents":["past_medical_history"], "parent_required":True}])
+        text = "other text Explanation: The patient has one"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 1
+        name,text,parent,section  = doc._.sections[0]
+        assert name is None
+        assert parent is None
