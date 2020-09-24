@@ -12,16 +12,19 @@ Doc.set_extension("sections", default=list(), force=True)
 Doc.set_extension("section_titles", getter=util.get_section_titles, force=True)
 Doc.set_extension("section_headers", getter=util.get_section_headers, force=True)
 Doc.set_extension("section_spans", getter=util.get_section_spans, force=True)
+Doc.set_extension("section_parents", getter=util.get_section_parents, force=True)
 
 Token.set_extension("section_span", default=None, force=True)
 Token.set_extension("section_title", default=None, force=True)
 Token.set_extension("section_header", default=None, force=True)
+Token.set_extension("section_parent", default=None, force=True)
 
 # Set span attributes to the attribute of the first token
 # in case there is some overlap between a span and a new section header
 Span.set_extension("section_span", getter=lambda x: x[0]._.section_span, force=True)
 Span.set_extension("section_title", getter=lambda x: x[0]._.section_title, force=True)
 Span.set_extension("section_header", getter=lambda x: x[0]._.section_header, force=True)
+Span.set_extension("section_parent", getter=lambda x: x[0]._.section_header, force=True)
 
 DEFAULT_RULES_FILEPATH = path.join(
     Path(__file__).resolve().parents[1], "resources", "spacy_section_patterns.jsonl"
@@ -91,6 +94,8 @@ class Sectionizer:
         self.assertion_attributes_mapping = None
         self._patterns = []
         self._section_titles = set()
+        self._parent_sections = {}
+        self._parent_required = {}
 
         if patterns is not None:
             if patterns == "default":
@@ -190,12 +195,49 @@ class Sectionizer:
         for pattern_dict in patterns:
             name = pattern_dict["section_title"]
             pattern = pattern_dict["pattern"]
+            parents = []
+            parent_required = False
+            if "parents" in pattern_dict.keys():
+                parents = pattern_dict["parents"]
+
+            if "parent_required" in pattern_dict.keys():
+                if not parents:
+                    raise ValueError("Jsonl file incorrectly formatted for pattern name {0}. If parents are required, then at least one parent must be specified.".format(name))
+                parent_required = pattern_dict["parent_required"]
+
             if isinstance(pattern, str):
                 self.phrase_matcher.add(name, None, self.nlp.make_doc(pattern))
             else:
                 self.matcher.add(name, [pattern])
             self._patterns.append(pattern_dict)
             self._section_titles.add(name)
+
+            self._parent_sections[name] = parents
+            self._parent_required[name] = parent_required
+
+    def set_parent_sections(self,sections):
+        sections_final = []
+        for i,(name,header,section) in enumerate(sections):
+            if i == 0 or name not in self._parent_sections.keys():
+                sections_final.append((name,header,None,section))
+            else:
+                parents = self._parent_sections[name]
+                identified_parent = None
+                for parent in parents:
+                    # if the previous section is the parent OR the previous section's parent is the parent
+                    if sections_final[i-1][0] == parent or sections_final[i-1][2] == parent:
+                        identified_parent = parent
+                # if a parent is required, then add 
+                required = self._parent_required[name]
+                if identified_parent or not required:
+                    # if the parent is identified, add section
+                    # if the parent is not required, add section
+                    # if parent is not identified and required, do not add the section
+                    sections_final.append((name,header,identified_parent,section))
+        return sections_final
+
+
+
 
     def set_assertion_attributes(self, ents):
         """Add Span-level attributes to entities based on which section they occur in.
@@ -222,7 +264,7 @@ class Sectionizer:
             matches = self.filter_end_lines(doc, matches)
         matches = prune_overlapping_matches(matches)
         if len(matches) == 0:
-            doc._.sections.append((None, None, doc[0:]))
+            doc._.sections.append((None, None, None, doc[0:]))
             return doc
 
         first_match = matches[0]
@@ -250,12 +292,15 @@ class Sectionizer:
                     scope_end = min(end+self.max_scope, next_start)
                     section_spans.append((name, section_header, doc[start:scope_end]))
 
-        for name, header, section in section_spans:
-            doc._.sections.append((name, header, section))
+        section_spans_with_parent = self.set_parent_sections(section_spans)
+
+        for name, header, parent, section in section_spans_with_parent:
+            doc._.sections.append((name, header, parent, section))
             for token in section:
                 token._.section_span = section
                 token._.section_title = name
                 token._.section_header = header
+                token._.section_parent = parent
 
         # If it is specified to add assertion attributes,
         # iterate through the entities in doc and add them

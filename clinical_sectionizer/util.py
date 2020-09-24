@@ -3,13 +3,16 @@ import re
 NEWLINE_PATTERN = r"[\n\r]+[\s]*$"
 
 def get_section_titles(doc):
-    return [title for (title, _, _) in doc._.sections]
+    return [title for (title, _, _, _) in doc._.sections]
 
 def get_section_headers(doc):
-    return [header for (_, header, _) in doc._.sections]
+    return [header for (_, header, _, _) in doc._.sections]
+
+def get_section_parents(doc):
+    return [parent for (_, _, parent, _,) in doc._.sections]
 
 def get_section_spans(doc):
-    return [span for (_, _, span) in doc._.sections]
+    return [span for (_, _, _, span) in doc._.sections]
 
 def is_start_line(idx, doc, pattern):
     # If it's the start of the doc, return True
