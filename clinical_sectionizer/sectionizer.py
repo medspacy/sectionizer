@@ -217,27 +217,60 @@ class Sectionizer:
 
     def set_parent_sections(self,sections):
         sections_final = []
-        for i,(name,header,section) in enumerate(sections):
-            if i == 0 or name not in self._parent_sections.keys():
-                sections_final.append((name,header,None,section))
+        removed_sections = 0
+        for i,(match_id,start,end) in enumerate(sections):
+            name = self.nlp.vocab.strings[match_id]
+            required = self._parent_required[name]
+            i_a = i - removed_sections # adjusted index for removed values
+            if required and i_a == 0:
+                removed_sections += 1
+                continue
+            elif i_a == 0 or name not in self._parent_sections.keys():
+                sections_final.append((match_id,start,end,None))
             else:
                 parents = self._parent_sections[name]
                 identified_parent = None
                 for parent in parents:
-                    # if the previous section is the parent OR the previous section's parent is the parent
-                    if sections_final[i-1][0] == parent or sections_final[i-1][2] == parent:
-                        identified_parent = parent
+                    # go backwards through the section "tree" until you hit a root or the start of the list
+                    candidate = self.nlp.vocab.strings[sections_final[i_a-1][0]]
+                    candidates_parent = sections_final[i_a-1][3]
+                    candidate_i = i_a-1
+                    while candidate:
+                        if candidate == parent:
+                            identified_parent = parent
+                            candidate = None
+                        else:
+                            # if you are at the end of the list... no parent
+                            if candidate_i < 1:
+                                candidate = None
+                                continue
+                            # if the current candidate has no parent... no parent exists
+                            if not candidates_parent:
+                                candidate = None
+                                continue
+                            # otherwise get the previous item in the list
+                            temp = self.nlp.vocab.strings[sections_final[candidate_i-1][0]]
+                            temp_parent = sections_final[candidate_i-1][3]
+                            # if the previous item is the parent of the current item
+                            # OR if the previous item is a sibling of the current item
+                            # continue to search
+                            if temp == candidates_parent or temp_parent == candidates_parent:
+                                candidate = temp
+                                candidates_parent = temp_parent
+                                candidate_i -= 1
+                            # otherwise, there is no further tree traversal
+                            else:
+                                candidate = None
+
                 # if a parent is required, then add 
-                required = self._parent_required[name]
                 if identified_parent or not required:
                     # if the parent is identified, add section
                     # if the parent is not required, add section
                     # if parent is not identified and required, do not add the section
-                    sections_final.append((name,header,identified_parent,section))
+                    sections_final.append((match_id,start,end,identified_parent))
+                else:
+                    removed_sections += 1
         return sections_final
-
-
-
 
     def set_assertion_attributes(self, ents):
         """Add Span-level attributes to entities based on which section they occur in.
@@ -253,8 +286,6 @@ class Sectionizer:
                     setattr(ent._, attr_name, attr_value)
 
 
-
-
     def __call__(self, doc):
         matches = self.matcher(doc)
         matches += self.phrase_matcher(doc)
@@ -263,6 +294,8 @@ class Sectionizer:
         if self.require_end_line:
             matches = self.filter_end_lines(doc, matches)
         matches = prune_overlapping_matches(matches)
+        matches = self.set_parent_sections(matches)
+
         if len(matches) == 0:
             doc._.sections.append((None, None, None, doc[0:]))
             return doc
@@ -270,36 +303,36 @@ class Sectionizer:
         first_match = matches[0]
         section_spans = []
         if first_match[1] != 0:
-            section_spans.append((None, None, doc[0:first_match[1]]))
+            section_spans.append((None, None, None, doc[0:first_match[1]]))
         for i, match in enumerate(matches):
-            (match_id, start, end) = match
+            (match_id, start, end, parent) = match
             section_header = doc[start:end]
             name = self.nlp.vocab.strings[match_id]
             # If this is the last match, it should include the rest of the doc
             if i == len(matches) - 1:
                 if self.max_scope is None:
-                    section_spans.append((name, section_header, doc[start:]))
+                    section_spans.append((name, section_header, parent, doc[start:]))
                 else:
                     scope_end = min(end+self.max_scope, doc[-1].i)
-                    section_spans.append((name, section_header, doc[start:scope_end]))
+                    section_spans.append((name, section_header, parent, doc[start:scope_end]))
             # Otherwise, go until the next section header
             else:
                 next_match = matches[i + 1]
-                _, next_start, _ = next_match
+                _, next_start, _, _ = next_match
                 if self.max_scope is None:
-                    section_spans.append((name, section_header, doc[start:next_start]))
+                    section_spans.append((name, section_header, parent, doc[start:next_start]))
                 else:
                     scope_end = min(end+self.max_scope, next_start)
-                    section_spans.append((name, section_header, doc[start:scope_end]))
+                    section_spans.append((name, section_header, parent, doc[start:scope_end]))
 
-        section_spans_with_parent = self.set_parent_sections(section_spans)
+        #section_spans_with_parent = self.set_parent_sections(section_spans)
 
         # if there are no sections after required rules remove them, add one section over the entire document and exit
-        if len(section_spans_with_parent) == 0:
-            doc._.sections.append((None, None, None, doc[0:]))
-            return doc
+        # if len(section_spans_with_parent) == 0:
+        #     doc._.sections.append((None, None, None, doc[0:]))
+        #     return doc
 
-        for name, header, parent, section in section_spans_with_parent:
+        for name, header, parent, section in section_spans:
             doc._.sections.append((name, header, parent, section))
             for token in section:
                 token._.section_span = section

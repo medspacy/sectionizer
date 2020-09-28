@@ -156,6 +156,22 @@ class TestSectionizer:
         assert allergies_parent is None
         assert explanation_parent2 == "allergies"
 
+    def test_parent_section_no_valid_parent(self):
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"},
+                        {"section_title": "allergies", "pattern": "Allergies:"},
+                        {"section_title": "explanation", "pattern": "Explanation:", "parents":["past_medical_history"]}])
+        text = "Past Medical History: some other text. Allergies: peanuts Explanation: pt cannot eat peanuts"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 3
+        _,_,pmh_parent,_ = doc._.sections[0]
+        _,_,allergies_parent,_ = doc._.sections[1]
+        _,_,explanation_parent2,_ = doc._.sections[2]
+        assert pmh_parent is None
+        assert allergies_parent is None
+        assert explanation_parent2 is None
+
     def test_parent_section_parent_required(self):
         sectionizer = Sectionizer(nlp, patterns=None)
         sectionizer.add([{"section_title": "past_medical_history", "pattern": "Past Medical History:"},
@@ -167,3 +183,58 @@ class TestSectionizer:
         name,text,parent,section  = doc._.sections[0]
         assert name is None
         assert parent is None
+
+    def test_parent_section_chain(self):
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add([{"section_title": "s1", "pattern": "section 1:"},
+                        {"section_title": "s2", "pattern": "section 2:", "parents":["s1"]},
+                        {"section_title": "s3", "pattern": "section 3:", "parents":["s2"]}])
+        text = "section 1: abc section 2: abc section 3: abc"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 3
+        _,_,s1,_  = doc._.sections[0]
+        _,_,s2,_  = doc._.sections[1]
+        _,_,s3,_  = doc._.sections[2]
+        assert s1 is None
+        assert s2 == "s1"
+        assert s3 == "s2"
+
+    def test_parent_section_chain_backtracking(self):
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add([{"section_title": "s1", "pattern": "section 1:"},
+                        {"section_title": "s2", "pattern": "section 2:", "parents":["s1"]},
+                        {"section_title": "s3", "pattern": "section 3:", "parents":["s2"]},
+                        {"section_title": "s4", "pattern": "section 4:", "parents":["s1"]}])
+        text = "section 1: abc section 2: abc section 3: abc section 4: abc"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 4
+        _,_,s1,_  = doc._.sections[0]
+        _,_,s2,_  = doc._.sections[1]
+        _,_,s3,_  = doc._.sections[2]
+        _,_,s4,_  = doc._.sections[3]
+        assert s1 is None
+        assert s2 == "s1"
+        assert s3 == "s2"
+        assert s4 == "s1"
+
+    def test_parent_section_chain_backtracking_interrupted(self):
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add([{"section_title": "s1", "pattern": "section 1:"},
+                        {"section_title": "s2", "pattern": "section 2:", "parents":["s1"]},
+                        {"section_title": "s3", "pattern": "section 3:", "parents":["s2"]},
+                        {"section_title": "break", "pattern": "section break:"},
+                        {"section_title": "s4", "pattern": "section 4:", "parents":["s1"]}])
+        text = "section 1: abc section 2: abc section 3: abc section break: abc section 4: abc"
+        doc = nlp(text)
+        sectionizer(doc)
+        assert len(doc._.sections) == 5
+        _,_,s1,_  = doc._.sections[0]
+        _,_,s2,_  = doc._.sections[1]
+        _,_,s3,_  = doc._.sections[2]
+        _,_,s4,_  = doc._.sections[4]
+        assert s1 is None
+        assert s2 == "s1"
+        assert s3 == "s2"
+        assert s4 is None
