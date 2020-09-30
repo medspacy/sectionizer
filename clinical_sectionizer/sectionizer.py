@@ -5,6 +5,7 @@ from spacy.matcher import Matcher, PhraseMatcher
 from os import path
 from pathlib import Path
 import re
+import warnings
 
 from . import util
 
@@ -212,8 +213,18 @@ class Sectionizer:
             self._patterns.append(pattern_dict)
             self._section_titles.add(name)
 
-            self._parent_sections[name] = parents
-            self._parent_required[name] = parent_required
+            if name in self._parent_sections.keys()
+                warnings.warn("Duplicate section title {0}. Merging parents. If this is not indended, please specify distinc titles.".format(name),RuntimeWarning)
+                self._parent_sections[name].update(parents)
+            else:
+                self._parent_sections[name] = set(parents)
+
+            if name in self._parent_required.keys() and self._parent_required[name] != required:
+                warnings.warn("Duplicate section title {0} has different parent_required option. Setting parent_required to False.".format(name),RuntimeWarning)
+                self._parent_required[name] = False
+            else:
+                self._parent_required[name] = required
+
 
     def set_parent_sections(self,sections):
         sections_final = []
