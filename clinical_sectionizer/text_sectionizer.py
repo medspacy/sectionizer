@@ -5,7 +5,9 @@ from os import path
 from pathlib import Path
 
 DEFAULT_RULES_FILEPATH = path.join(
-    Path(__file__).resolve().parents[1], "resources", "text_section_patterns.jsonl"
+    Path(__file__).resolve().parents[1],
+    "resources",
+    "text_section_patterns.jsonl",
 )
 
 
@@ -51,7 +53,7 @@ class TextSectionizer:
 
         def _mycomp(rex, flags=None):
 
-            if flags == None:
+            if flags is None:
                 flags = [re.I]
             cflags = 0
             for f in flags:
@@ -64,7 +66,9 @@ class TextSectionizer:
             pattern = pattern_dict["pattern"]
             if isinstance(pattern, str):
                 self._compiled_patterns.setdefault(name, [])
-                self._compiled_patterns[name].append(_mycomp(pattern, flags=cflags))
+                self._compiled_patterns[name].append(
+                    _mycomp(pattern, flags=cflags)
+                )
             else:
                 # TODO: Change the default patterns
                 # continue
@@ -149,7 +153,9 @@ class TextSectionizer:
                 sections.append((name, text[match.start() :]))
             else:
                 next_match = matches[i + 1][1]
-                sections.append((name, text[match.start() : next_match.start()]))
+                sections.append(
+                    (name, text[match.start() : next_match.start()])
+                )
 
         return sections
 
