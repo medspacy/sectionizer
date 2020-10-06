@@ -213,17 +213,17 @@ class Sectionizer:
             self._patterns.append(pattern_dict)
             self._section_titles.add(name)
 
-            if name in self._parent_sections.keys()
+            if name in self._parent_sections.keys() and parents != []:
                 warnings.warn("Duplicate section title {0}. Merging parents. If this is not indended, please specify distinc titles.".format(name),RuntimeWarning)
                 self._parent_sections[name].update(parents)
             else:
                 self._parent_sections[name] = set(parents)
 
-            if name in self._parent_required.keys() and self._parent_required[name] != required:
+            if name in self._parent_required.keys() and self._parent_required[name] != parent_required:
                 warnings.warn("Duplicate section title {0} has different parent_required option. Setting parent_required to False.".format(name),RuntimeWarning)
                 self._parent_required[name] = False
             else:
-                self._parent_required[name] = required
+                self._parent_required[name] = parent_required
 
 
     def set_parent_sections(self,sections):

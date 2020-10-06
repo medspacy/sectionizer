@@ -1,5 +1,6 @@
 import pytest
 import spacy
+import warnings
 
 from clinical_sectionizer import Sectionizer
 
@@ -238,3 +239,25 @@ class TestSectionizer:
         assert s2 == "s1"
         assert s3 == "s2"
         assert s4 is None
+
+    def test_duplicate_parent_definitions(self):
+        with warnings.catch_warnings(record=True) as w:
+            sectionizer = Sectionizer(nlp, patterns=None)
+            sectionizer.add([{"section_title": "s1", "pattern": "section 1:"},
+                            {"section_title": "s2", "pattern": "section 2:", "parents":["s1"]},
+                            {"section_title": "s2", "pattern": "section 2:", "parents":["s3"]},
+                            {"section_title": "s3", "pattern": "section 3:"}])
+            text = "section 1: abc section 2: abc section 3: abc section 2: abc"
+            doc = nlp(text)
+            sectionizer(doc)
+            assert len(doc._.sections) == 4
+            _,_,s1,_  = doc._.sections[0]
+            _,_,s2,_  = doc._.sections[1]
+            _,_,s3,_  = doc._.sections[2]
+            _,_,s2_2,_  = doc._.sections[3]
+            assert len(w) == 1
+            assert issubclass(w[0].category, RuntimeWarning)
+            assert s1 is None
+            assert s2 == "s1"
+            assert s3 == None
+            assert s2_2 == "s3"
