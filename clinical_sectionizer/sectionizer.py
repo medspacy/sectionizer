@@ -274,6 +274,13 @@ class Sectionizer:
                 self._parent_required[name] = parent_required
 
     def set_parent_sections(self, sections):
+        """Determine the legal parent-child section relationships from the list
+        of in-order sections of a document and the possible parents of each
+        section as specified during rule creation.
+
+        Args:
+            sections: a list of spacy match tuples found in the doc
+        """
         sections_final = []
         removed_sections = 0
         for i, (match_id, start, end) in enumerate(sections):
