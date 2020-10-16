@@ -447,3 +447,26 @@ class TestSectionizer:
             assert s2 == "s1"
             assert s3 is None
             assert s2_2 == "s3"
+
+    def test_named_tuple(self):
+        doc = nlp("Past Medical History: PE")
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add(
+            [
+                {
+                    "section_title": "past_medical_history",
+                    "pattern": "Past Medical History:",
+                }
+            ]
+        )
+        sectionizer(doc)
+        section_tup = doc._.sections[0]
+        from clinical_sectionizer.sectionizer import Section
+        assert isinstance(section_tup, (tuple, Section))
+        assert len(section_tup) == 4
+        (section_title, header, parent, section) = section_tup
+        assert section_title is section_tup.section_title
+        assert header is section_tup.section_header
+        assert parent is section_tup.section_parent
+        assert section is section_tup.section_span
+
