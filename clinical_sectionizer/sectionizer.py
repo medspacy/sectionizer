@@ -53,6 +53,11 @@ DEFAULT_ATTRS = {
     "education": {"is_hypothetical": True},
     "allergy": {"is_hypothetical": True},
 }
+from collections import namedtuple
+Section = namedtuple("Section", field_names=["section_title",
+                                            "section_header",
+                                            "section_parent",
+                                            "section_span"])
 
 
 class Sectionizer:
@@ -80,12 +85,17 @@ class Sectionizer:
                 scope. Example: 'Past Medical History: Type II DM'
 
         Section attributes will be registered for each Doc, Span, and Token in the following attributes:
-            Doc._.sections: A list of 3-tuples of (section_title, section_header, section). A Doc
-                will also have attributes corresponding to lists of each (ie., Doc._.section_titles,
-                Doc._.section_headers, Doc._.section_spans)
+            Doc._.sections: A list of namedtuples of type Section with 4 elements:
+                - section_title
+                - section_header
+                - section_parent
+                - section_span.
+            A Doc will also have attributes corresponding to lists of each
+                (ie., Doc._.section_titles, Doc._.section_headers, Doc._.section_parents, Doc._.section_spans)
             (Span|Token)._.section_title
             (Span|Token)._.section_header
-            (Span|Token)._.section
+            (Span|Token)._.section_parent
+            (Span|Token)._.section_span
 
         Args:
             nlp: A SpaCy language model object
@@ -378,7 +388,7 @@ class Sectionizer:
         first_match = matches[0]
         section_spans = []
         if first_match[1] != 0:
-            section_spans.append((None, None, None, doc[0 : first_match[1]]))
+            section_spans.append(Section(None, None, None, doc[0 : first_match[1]]))
         for i, match in enumerate(matches):
             (match_id, start, end, parent) = match
             section_header = doc[start:end]
@@ -387,12 +397,12 @@ class Sectionizer:
             if i == len(matches) - 1:
                 if self.max_scope is None:
                     section_spans.append(
-                        (name, section_header, parent, doc[start:])
+                        Section(name, section_header, parent, doc[start:])
                     )
                 else:
                     scope_end = min(end + self.max_scope, doc[-1].i)
                     section_spans.append(
-                        (name, section_header, parent, doc[start:scope_end])
+                        Section(name, section_header, parent, doc[start:scope_end])
                     )
             # Otherwise, go until the next section header
             else:
@@ -400,12 +410,12 @@ class Sectionizer:
                 _, next_start, _, _ = next_match
                 if self.max_scope is None:
                     section_spans.append(
-                        (name, section_header, parent, doc[start:next_start])
+                        Section(name, section_header, parent, doc[start:next_start])
                     )
                 else:
                     scope_end = min(end + self.max_scope, next_start)
                     section_spans.append(
-                        (name, section_header, parent, doc[start:scope_end])
+                        Section(name, section_header, parent, doc[start:scope_end])
                     )
 
         # section_spans_with_parent = self.set_parent_sections(section_spans)
@@ -415,8 +425,9 @@ class Sectionizer:
         #     doc._.sections.append((None, None, None, doc[0:]))
         #     return doc
 
-        for name, header, parent, section in section_spans:
-            doc._.sections.append((name, header, parent, section))
+        for section_tuple in section_spans:
+            name, header, parent, section = section_tuple
+            doc._.sections.append(section_tuple)
             for token in section:
                 token._.section_span = section
                 token._.section_title = name
