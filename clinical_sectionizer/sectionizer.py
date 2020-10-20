@@ -380,7 +380,8 @@ class Sectionizer:
             matches = self.filter_end_lines(doc, matches)
         matches = prune_overlapping_matches(matches)
         matches = self.set_parent_sections(matches)
-
+        # If this has already been processed by the sectionizer, reset the sections
+        doc._.sections = []
         if len(matches) == 0:
             doc._.sections.append((None, None, None, doc[0:]))
             return doc

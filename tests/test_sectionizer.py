@@ -25,6 +25,24 @@ class TestSectionizer:
         )
         assert sectionizer.patterns
 
+    def test_num_sections(self):
+        sectionizer = Sectionizer(nlp, patterns=None)
+        sectionizer.add(
+            [
+                {
+                    "section_title": "past_medical_history",
+                    "pattern": "Past Medical History:",
+                }
+            ]
+        )
+        doc = nlp("Past Medical History: PE")
+        sectionizer(doc)
+        assert len(doc._.sections) == 1
+        # Now reprocess and make sure it resets
+        doc = nlp("Past Medical History: PE")
+        sectionizer(doc)
+        assert len(doc._.sections) == 1
+
     def test_string_match(self):
         sectionizer = Sectionizer(nlp, patterns=None)
         sectionizer.add(

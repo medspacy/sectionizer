@@ -7,9 +7,20 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
+def get_version():
+    """Load the version from version.py, without importing it.
+    This function assumes that the last line in the file contains a variable defining the
+    version string with single quotes.
+    """
+    try:
+        with open('clinical_sectionizer/_version.py', 'r') as f:
+            return f.read().split('\n')[0].split('=')[-1].replace('\'', '').strip()
+    except IOError:
+        raise IOError
+
 setup(
     name="clinical_sectionizer",
-    version="0.1.3",
+    version=get_version(),
     description="Document section detector using spaCy for clinical NLP",
     author="medSpaCy",
     author_email="medspacy.dev@gmail.com",
