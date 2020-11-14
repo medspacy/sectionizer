@@ -3,6 +3,10 @@ from setuptools import setup
 # read the contents of the README file
 from os import path
 
+import warnings
+warnings.simplefilter('once', DeprecationWarning)
+warnings.warn("cycontext is now *deprecated*. Please use medspacy.context instead: `pip install medspacy`", RuntimeWarning)
+
 this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()

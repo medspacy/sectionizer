@@ -1,132 +1,25 @@
 # Clinical Sectionizer
 This package offers a component for tagging clinical section titles in docs. 
 
+# This package is deprecated!
+Development for `clinical_sectionizer` has been moved to [medSpaCy](https://github.com/medspacy/medspacy) and should now be installed as:
 
-**Clinical Sectionizer** is part of the [medSpaCy](https://github.com/medspacy/medspacy) project and can be installed separately or as part of a medSpaCy pipeline.
-
-[<img src="https://github.com/medspacy/medspacy/raw/master/images/medspacy_logo.png" align="center">](https://github.com/medspacy/medspacy)
-
-There are two different flavors of the sectionizer:
-- `Sectionizer`: A spaCy component which is run on a `Doc` object and adds attributes to spaCy objects. This can be added
-to an NLP pipeline and be executed as part of `nlp(text)`
-- `TextSectionizer`: A stand-alone object, independent of spaCy which takes a text and returns a list of tuples, where
-each tuple corresponds to a section in the text.
-
-The `sectionizer` takes a list of 
-patterns for section titles and searches for matches in a `doc`. When a section is found, it generates three outputs:
-1. `section_title`: The normalized name of a section, a `string`
-2. `section_header`: The span of the doc containing the header, a `Span`
-3. `section_span`: The entire span of the doc containing the section, a `Span`
-4. `section_parent`: The parent `section_title` if the section is a subsection, a `string`
-
-When using the spaCy `Sectionizer`, calling `sectionizer(doc)` adds the 
-following extensions to spaCy objects:
-
-- `Doc.sections`: A list of 3-tuples of (`name`, `header`, `parent`, `section`)
-- `Token.section_span`: The `span` of the entire section which the token occurs in
-- `Token.section_header`: The `span` of the section header of the section a token occurs in
-- `Token.section_title`: The name of the section header defined by a pattern
-- `Token.section_parent`: The name of the parent section defined by a pattern and identified in text.
-- `Span` attributes corresponding `section_span`, `section_header`, and `section_title` to the first token in a span
-
-When using `TextSectionizer`, calling `sectionizer(text)` returns a list of 3-tuples which correspond to the outputs 
-described above, but each as texts rather than spaCy objects: `(section_title, section_header, section_text)`.
-
-Sectionizng works best when you have robust and complete patterns which are designed specifically to your data. Each EHR uses different section titles, so you should adjust your patterns accordingly. A default list of patterns is loaded when using `patterns="default"`. You can also set `max_scope`, which will limit the size of a section to a certain number of tokens. This can be useful to prevent sections for running on too far if following section headers aren't recognized.
-
-# Installation
-You can install `clinical_sectionizer` via pip:
-
-`pip install clinical-sectionizer`
-
-Or by cloning this repository and running:
-
-`python setup.py install`
-
-# Example
-See `notebooks/`for more detailed examples.
-
-```python
->>> text = """Family History:
-    Diabetes
-    Comment:
-    both parents
-    
-    Past Medical History:
-    Pneumonia
-    
-    Assessment and Plan:
-    Atrial fibrillation. There is no evidence of pneumonia.
-    """
->>> import spacy
->>> nlp = spacy.load(...) # Load a model which will match clinical concepts
-
->>> from clinical_sectionizer import Sectionizer
->>> sectionizer = nlp.add_pipe(Sectionizer(nlp))
-
-
->>> section_patterns = [
-        {"section_title": "family_history", "pattern": "Family History:"},
-        {"section_title": "comment", "pattern": "Comment:", "parents":["family_history"]}
-        {"section_title": "past_medical_history", 
-            "pattern": [
-                {"LOWER": "past", "OP": "?"}, 
-                {"LOWER": "medical"},
-                {"LOWER": "history"}, 
-                {"LOWER": ":"},
-            ]
-            
-        },
-        {"section_title": "assessment_and_plan", "pattern": "Assessment and Plan:"},
-    ]
->>> sectionizer.add(section_patterns)
-
->>> nlp.add_pipe(sectionizer)
->>> doc = nlp(text)
->>> print(nlp.ents)
-(Diabetes, Pneumonia, Atrial fibrillation, pneumonia)
-
-
-
->>> for (section_name, section_header, section_parent, section) in doc._.sections:
-        print(section_name, section_header, section_parent, section, sep="\n")
-
-family_history
-Family History:
-None
-Family History:
-Diabetes
-
-comment
-Comment:
-family_history
-Comment:
-both parents
-
-past_medical_history
-Past Medical History:
-None
-Past Medical History:
-Pneumonia
-
-assessment_and_plan
-Assessment and Plan:
-None
-Assessment and Plan:
-Atrial fibrillation. There is no evidence of pneumonia.
-
->>> for ent in doc.ents:
-        print(ent, ent._.section_title)
-    
-Diabetes family_history
-Pneumonia past_medical_history
-Atrial fibrillation assessment_and_plan
-pneumonia assessment_and_plan
+```bash
+pip install medspacy
 ```
 
-Using [medspacy](https://github.com/medspacy/medspacy), you can also use a visualizer which shows section headers, along with any extracted entities and optionally cycontext modifiers, in an NER-style visualization.
 ```python
-from medspacy.visualization import visualize_ent
-visualize_ent(doc, sections=True, context=False)
-``` 
-<p align="center"><img width="50%" height="50%" src="img/viz_ent.png" /></p>
+# Option 1: Load with a medspacy pipeline
+import medspacy
+nlp = medspacy.load(enable=["sectionizer"])
+print(nlp.pipe_names)
+
+# Option 2: Manually add to a spaCy model
+import spacy
+from medspacy.section_detection import Sectionizer
+nlp = spacy.load("en_core_web_sm")
+nlp.add_pipe(Sectionizer(nlp))
+```
+[<img src="https://github.com/medspacy/medspacy/raw/master/images/medspacy_logo.png" align="center">](https://github.com/medspacy/medspacy)
+
+Please see the [medSpaCy](https://github.com/medspacy/medspacy) GitHub page for additional information and documentation.
